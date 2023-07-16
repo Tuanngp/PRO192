@@ -196,6 +196,7 @@ public class CustomerManagement extends Menu<String>{
                 }
             }
         };
+        deleteMenu.run();
     }
     
 }
