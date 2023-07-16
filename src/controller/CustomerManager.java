@@ -133,7 +133,9 @@ public class CustomerManager {
                                                                 && p.getName().equalsIgnoreCase(name)
                                                                 && p.getPhone().equalsIgnoreCase(phone)
                                                                 && p.getEmail().equalsIgnoreCase(email)) ;
-        
+        for(Customer cus: customersDeleted ) {
+            customers.remove(cus);
+        }
         return !customersDeleted.isEmpty();
     }
 //    ------------------------------------------------------------------------------
