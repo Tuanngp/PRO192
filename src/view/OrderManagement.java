@@ -18,7 +18,6 @@ public class OrderManagement extends Menu<String> {
     private CustomerManager customerManager = new CustomerManager();
     private RoomManager roomManager = new RoomManager();
     private RoomManagement roomManagement = new RoomManagement();
-    private CustomerManagement customerManagement = new CustomerManagement();
 
     public OrderManagement() {
         super("Order Management System", menu);

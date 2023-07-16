@@ -138,7 +138,7 @@ public class EmployeeManager {
                 String dayWorkStr = Validation.checkValue(data[7], Validation.REGEX_DAYWORK);
                 int dayWork = Integer.parseInt(dayWorkStr);
                 String role = Validation.checkValue(data[8], Validation.REGEX_ROLE);
-                employees.add(new Employee(id, name, phone, address, gender, dateOfBirth, email, dayWork, role));
+                employees.add(new Employee(idFormat, name, phone, address, gender, dateOfBirth, email, dayWork, role));
             } else {
                 System.out.println("Invalid file data");
             }

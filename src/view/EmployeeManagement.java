@@ -141,7 +141,6 @@ public class EmployeeManagement extends Menu<String> {
         String email = Validation.getString("Enter new email: ", Validation.REGEX_EMAIL);
         int dayWork = Validation.getDayWork("Enter Employee's DayWork:");
         String role = Validation.getString("Enter Employee's Role:", Validation.REGEX_ROLE);
-        Float salary = Validation.getFloat("Enter Employee's Salary:");
         // check Update
         if (employeeManager.updateEmployee(employee, idNew, name, phone, address, genderStr, dateOfBirthStr, email,
                 dayWork, role)) {
@@ -194,5 +193,6 @@ public class EmployeeManagement extends Menu<String> {
                 }
             }
         };
+        deleteMenu.run();
     }
 }

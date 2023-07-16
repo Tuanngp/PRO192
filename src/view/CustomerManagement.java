@@ -63,7 +63,7 @@ public class CustomerManagement extends Menu<String>{
         String phone = Validation.getString("(*)Enter customer's phone:", Validation.REGEX_NUMBER);
         String address = Validation.getString("Enter Customer Address: ", Validation.REGEX_ADDRESS);
         Boolean gender = Boolean.parseBoolean(Validation.getString("Enter Customer Gender (true=male|false=female): ", Validation.REGEX_GENDER));
-        LocalDate dateOfBirth = Validation.getDate("Enter customer's date of birth: ");
+        LocalDate dateOfBirth = Validation.getDate(Validation.getString("Enter customer's date of birth: "));
         String email = Validation.getString("Enter customer's email: ", Validation.REGEX_EMAIL);
         String rank = "member";
         Customer customer = new Customer(id, name, phone, address, gender, dateOfBirth, email, rank);
