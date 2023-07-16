@@ -17,8 +17,9 @@ public class OrderManagement extends Menu<String> {
                             "Search Room Order", "Release Room", "Sort room order by day rented", "Exit." };
     private OrderManager orderManager = new OrderManager();
     private CustomerManager customerManager = new CustomerManager();
-    private RoomManagement roomManagement = new RoomManagement();
     private RoomManager roomManager = new RoomManager();
+    private RoomManagement roomManagement = new RoomManagement();
+    private CustomerManagement customerManagement = new CustomerManagement();
 
     public OrderManagement() {
         super("Order Management System", menu);
@@ -73,7 +74,7 @@ public class OrderManagement extends Menu<String> {
 
         if (customer == null) {
             System.out.println("Customer with ID " + customerId + " does not exist. Please create the customer first.");
-            return;
+            customer = CustomerManagement.getCustomer(customerId);
         }
 
         Room room = roomManagement.getRoom();
