@@ -55,7 +55,6 @@ public class Person {
         return phone;
     }
 
-
     public void setPhone(String phone) {
         this.phone = phone;
     }
@@ -93,12 +92,12 @@ public class Person {
         return dateOfBirth;
     }
 
-    public String getDateOfBirthStr() {
-        return dateOfBirth.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-    }
-
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+    
+    public String getDateOfBirthStr() {
+        return dateOfBirth.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
     public String setFormat(String str) {

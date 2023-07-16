@@ -13,14 +13,14 @@ public class Validation {
     public static final String REGEX_NAME = "^[a-zA-Z ]*$";
     public static final String REGEX_NUMBER = "\\d*";
     public static final String REGEX_ADDRESS = "^[A-Za-z0-9 ]*$";
-    public static final String REGEX_GENDER = "(?i)true|false*";
+    public static final String REGEX_GENDER = "\\b(?i)true|false+\\b";
     public static final String REGEX_CONFIRM = "(?i)yes|no+";
     public static final String REGEX_RANK = "(?i)member|silver|gold|diamond+";
-    public static final String REGEX_EMAIL = "^[A-Za-z0-9+_.-]*@[A-Za-z0-9.-]*$";
-    public static final String DATE_FORMAT= "dd/MM/yyyy";
+    public static final String REGEX_EMAIL = "^[A-Za-z0-9+_.-]*@*[A-Za-z0-9.-]*$";
     public static final String REGEX_DAYWORK = "^(?:[1-9]|[12]\\d|3[01])$";
     public static final String ROOM_TYPE= "(?i)single room|couple room*";
     public static final String REGEX_ROLE = "(?i)staff|manager+";
+    public static final String DATE_FORMAT= "dd/MM/yyyy";
     private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
 
     //-----------------------------------------------------------------------
@@ -30,7 +30,9 @@ public class Validation {
         do {
             System.out.print(pr);
             str = sc.nextLine();
-
+            if(str==null) {
+                return null;
+            }
             if (!str.matches(pattern)) {
                 System.out.println("[ERROR] Invalid input! Please try again.");
             }
@@ -65,13 +67,10 @@ public class Validation {
     
     public static LocalDate getLocalDate(String dateStr) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
-        LocalDate date;
-        try {
-            date = LocalDate.parse(dateStr, formatter);
-        } catch (Exception e) {
-            date = null;
+        if(dateStr==null) {
+            return null;
         }
-        return date;
+        return LocalDate.parse(dateStr, formatter);
     }
     // --------------------------------------------------------
    public static String getDate(String prompt) {
@@ -86,6 +85,10 @@ public class Validation {
                System.out.println("[ERROR], Try again please.");
            }
        } while (!validDay(dateStr));
+
+        if(!validDay(dateStr)) {
+            dateStr = null;
+        }
        return dateStr;
    }
     //---------------------------------------------------------
