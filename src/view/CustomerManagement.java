@@ -92,9 +92,8 @@ public class CustomerManagement extends Menu<String>{
                 ArrayList<Customer> rs = null;
                 switch(selected){
                     case "1":
-                        String val = Validation.getString("Enter ID's Customer you want to search: ", Validation.REGEX_ID);
-                        String id = "KH" + val;
-                        rs = customerManager.search(p -> p.getId().equalsIgnoreCase(id));
+                        String val = "KH"+Validation.getString("Enter ID's Customer you want to search: ", Validation.REGEX_ID);
+                        rs = customerManager.search(p -> p.getId().equalsIgnoreCase(val));
                         break;
                     case "2":
                         val = Validation.getString("Enter Name's Customer you want to search: ", Validation.REGEX_NAME);
