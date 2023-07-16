@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class CustomerManagement extends Menu<String>{
-    static String[] customersMenu = {"Display All Customer","Add Customer", "Search Customer", "Update Customer", "Delete Customer", "Exit"};
+    static String[] customersMenu = {"Display All Customer","Add Customer", "Search Customer", "Update Customer", "Delete Customer", "Save to file and Exit"};
     CustomerManager customerManager = new CustomerManager();
     public CustomerManagement() {
         super("Customer Management System", customersMenu );
@@ -38,6 +38,7 @@ public class CustomerManagement extends Menu<String>{
                 deleteCustomer();
                 break;
             case "6":
+                customerManager.saveFileAndExit("customer_ouput.txt");
                 System.out.println("Exit Customer Management System!");
                 return;
             default:
