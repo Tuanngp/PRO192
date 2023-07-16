@@ -3,10 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/FPT_Uni/PRO192/assignment/src/view/CustomerManagement.java</file>
-            <file>file:/D:/FPT_Uni/PRO192/assignment/src/controller/CustomerManager.java</file>
-            <file>file:/D:/FPT_Uni/PRO192/assignment/src/view/Main.java</file>
-            <file>file:/D:/FPT_Uni/PRO192/assignment/src/model/room/SingleRoom.java</file>
+            <file>file:/D:/FPT_Uni/PRO192/PRO192/src/controller/CustomerManager.java</file>
+            <file>file:/D:/FPT_Uni/PRO192/PRO192/src/view/HotelManagement.java</file>
         </group>
     </open-files>
 </project-private>
