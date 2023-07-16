@@ -28,6 +28,7 @@ public class CustomerManager {
             String[] data = line.split(",");
             if (data.length == 8) {
                 String id = Validation.checkValue(data[0].substring(2), Validation.REGEX_ID);
+                String idFormat = "KH"+id;
                 String name = Validation.checkValue(data[1], Validation.REGEX_NAME);
                 String phone = Validation.checkValue(data[2], Validation.REGEX_NUMBER);
                 String address = Validation.checkValue(data[3], Validation.REGEX_ADDRESS);
@@ -38,14 +39,14 @@ public class CustomerManager {
                 } else {
                     gender = false;
                 }
-                String dateOfBirthStr = Validation.checkValue(data[5], Validation.DATE_FORMAT);
+                String dateOfBirthStr = data[5];
                 LocalDate dateOfBirth = null;
                 if (dateOfBirthStr != null) {
                     dateOfBirth = LocalDate.parse(dateOfBirthStr, DateTimeFormatter.ofPattern(Validation.DATE_FORMAT));
                 }
                 String email = Validation.checkValue(data[6], Validation.REGEX_EMAIL);
                 String rank = Validation.checkValue(data[7], Validation.REGEX_RANK);
-                customers.add(new Customer(id, name, phone, address, gender, dateOfBirth, email, rank));
+                customers.add(new Customer(idFormat, name, phone, address, gender, dateOfBirth, email, rank));
             } else {
                 System.out.println("Invalid file data");
             }

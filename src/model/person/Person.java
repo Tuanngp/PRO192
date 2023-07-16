@@ -1,6 +1,7 @@
 package model.person;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Person {
  
@@ -88,11 +89,13 @@ public class Person {
         this.gender = gender;
     }
 
-
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
+    public String getDateOfBirthStr() {
+        return dateOfBirth.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    }
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
@@ -101,6 +104,6 @@ public class Person {
     @Override
     public String toString() {
         String genderString = this.gender ? "male" : "female";
-        return String.format("%-8s %-16s %-12s %-16s %-8s %-12s %-22s" , getId(), getName(), getPhone(), getAddress(), genderString, getDateOfBirth(), getEmail());
+        return String.format("%-8s %-16s %-12s %-16s %-8s %-12s %-22s" , getId(), getName(), getPhone(), getAddress(), genderString, getDateOfBirthStr(), getEmail());
     }
 }
