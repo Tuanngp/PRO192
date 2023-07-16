@@ -22,11 +22,11 @@ public class Person {
     }
 
     public String getId() {
-        return id;
+        return id.toUpperCase();
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.id = id.toUpperCase();
     }
 
 
@@ -62,7 +62,7 @@ public class Person {
 
 
     public String getAddress() {
-        return address;
+        return setFormat(address);
     }
 
 
@@ -110,7 +110,7 @@ public class Person {
         }
         return result;
     }
-    
+
     @Override
     public String toString() {
         String genderString = this.gender ? "male" : "female";

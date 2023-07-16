@@ -22,8 +22,6 @@ public class Customer extends Person{
     public void setRank(String rank) {
         this.rank = setFormat(rank);
     }
-
-
     
     @Override
     public String toString() {
