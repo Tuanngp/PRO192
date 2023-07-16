@@ -3,18 +3,23 @@ package view;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import controller.CustomerManager;
 import controller.OrderManager;
+import controller.RoomManager;
 import model.Order;
 import model.person.Customer;
 import model.room.Room;
 
-public class OrderManagement extends Menu <String>{
+public class OrderManagement extends Menu <String> {
     static String[] menu = {"Display All Room Order","Add Room Order", "Update Order's Customer.",
                             "Search Room Order","Release Room",
                             "Sort room order by day rented","Exit."};
     private Scanner sc = new Scanner(System.in);
     private OrderManager orderManager = new OrderManager();
-    public OrderManagement(){
+    private CustomerManager customerManager = new CustomerManager();
+    private RoomManagement roomManagement = new RoomManagement();
+    private RoomManager roomManager = new RoomManager();
+    public OrderManagement() {
         super("Order Management System", menu);
     }
     @Override 
@@ -48,15 +53,24 @@ public class OrderManagement extends Menu <String>{
     //--------------------------------------------------------------------------
     public void addOrder(){
         String id = Validation.getString("(*)Enter customer's id: ", Validation.REGEX_ID);
-        Customer customer = orderManager.search(p -> p.getCustomer().getId().equalsIgnoreCase(id)).get(0);
+        Customer customer = customerManager.search(p -> p.getId().equalsIgnoreCase(id)).get(0);
+        Order order = null;
         if(customer == null) {
             Customer customer1 = CustomerManagement.getCustomer(id);
-            Room room = RoomManagement.getRoom();
+            Room room = roomManagement.getRoom();
+            order = new Order(customer1, room);
         } else {
-            Room 
+            Room room = roomManagement.getRoom();
+            order = new Order(customer, room);
+            // Room 
+        }
+        if(orderManager.addOrder(order)) {
+            System.out.println("Order room successful.");
+        } else {
+            System.out.println("Unable to order room");
         }
     }
-
+    // ------------------------------------------------------------------------------
     public void displayAllOrder() {
         if(!orderManager.getOrders().isEmpty()) {
                 orderManager.displayAllOrder();
@@ -66,11 +80,28 @@ public class OrderManagement extends Menu <String>{
     }
     //--------------------------------------------------------------------------
     public void updateOrder() {
-        if(orderManager.updateOrder(null, null)) {
-            System.out.println("Update successfull.");
-        } else {
-            System.err.println("Update failed.");
-        }
+        String[] updateOrder = {"Update Room", "Update day rent", "Exit"};
+        Menu menuUpdate = new Menu("Updating order", updateOrder) {
+
+            @Override
+            public void execute(String selected) {
+                int orderID = Integer.parseInt(Validation.getString("Enter ID's order: ", Validation.REGEX_NUMBER));
+                Order order = orderManager.search(p -> p.getOrderID() == orderID).get(0);
+                switch(selected) {
+                    case "1":
+                        String roomID = Validation.getString("Enter new Room ID: ", Validation.REGEX_NUMBER);
+                        // Room newRoom = roomManager.searchRoom(p -> p.getRoomID().equals(roomID)).get(0);
+                        if(orderManager.updateOrder(order, newRoom, -1)) {
+                            System.out.println("Update successfull.");
+                        } else {
+                            System.out.println("Update falure.");
+                        }
+                        break;
+                    case "2":
+                        int dayRent = Integer.parseInt(Validation.getString("Enter new day rent: ", roomID))
+                }
+            }
+        };
     }
     //--------------------------------------------------------------------------
     public void searchOrder(){

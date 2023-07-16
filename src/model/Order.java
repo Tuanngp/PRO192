@@ -14,10 +14,9 @@ public class Order {
     public Order() {
     }
 
-    public Order(Room room, Customer customer, int orderID) {
+    public Order(Customer customer, Room room) {
         this.room = room;
         this.customer = customer;
-        this.orderID = orderID;
     }
 
     public Room getRoom() {
