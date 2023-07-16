@@ -53,10 +53,18 @@ public class OrderManagement extends Menu<String> {
                 System.out.println("Back to main menu.");
                 break;
             default:
-                System.out.println("[ERROR] Invalid input! Please try again.");
+            System.out.println("[ERROR] Invalid input! Please try again.");
         }
     }
-
+    
+    // ------------------------------------------------------------------------------
+    private void displayAllOrders() {
+        if (orderManager.getOrders().isEmpty()) {
+            System.out.println("No orders found.");
+        } else {
+            orderManager.displayAllOrder();
+        }
+    }
     // --------------------------------------------------------------------------
     public void addOrder() {
         String customerId = Validation.getString("(*) Enter customer's ID: ", Validation.REGEX_ID);
@@ -76,14 +84,6 @@ public class OrderManagement extends Menu<String> {
             System.out.println("Order placed successfully.");
         } else {
             System.out.println("Failed to place the order.");
-        }
-    }
-
-    private void displayAllOrders() {
-        if (orderManager.getOrders().isEmpty()) {
-            System.out.println("No orders found.");
-        } else {
-            orderManager.displayAllOrder();
         }
     }
     // --------------------------------------------------------------------------

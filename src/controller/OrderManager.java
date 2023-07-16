@@ -23,8 +23,29 @@ public class OrderManager {
     public OrderManager() {
         orders = new ArrayList<>();
     }
-
+    // --------------------------------------------------------
+    public ArrayList<Order> getOrders() {
+        ArrayList<Order> getOrders = new ArrayList<>();
+        for (Order order : orders) {
+            if (order.getRoom().getStatus()) {
+                getOrders.add(order);
+            }
+        }
+        return getOrders;
+    }
     // -----------------------------------------------------------
+    public void displayAllOrder() {
+        for (Order order : orders) {
+            if (order.getRoom().getStatus()) {
+                System.out.println(order);
+            }
+        }
+    }
+    // -----------------------------------------------------------
+    public void historyOrder() {
+        orders.forEach(p -> System.out.println(p));
+    }
+    // ----------------------------------------------------------
     public boolean addOrder(Order order) {
         if (order != null) {
             orders.add(order);
@@ -33,29 +54,11 @@ public class OrderManager {
             return false;
         }
     }
-
-    // ----------------------------------------------------------
-    public boolean displayAllOrder() {
-        for (Order order : orders) {
-            if (order.getRoom().getStatus()) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    // ------------------------------------------------------------
-    public ArrayList<Order> getOrders() {
-        return orders;
-    }
-
     // -------------------------------------------------
     public boolean isDupplication(int id) {
         return !search(p -> p.getOrderID() == id).isEmpty();
     }
-
     // ---------------------------------------------------------
-
     public ArrayList<Order> search(Predicate<Order> p) {
         ArrayList<Order> rs = new ArrayList<>();
         for (Order s : orders) {
@@ -65,7 +68,6 @@ public class OrderManager {
         }
         return rs;
     }
-
     // -------------------------------------------------------
     public boolean updateOrder(Order order, Room room, int dayRent) {
         boolean updated = false;
@@ -80,7 +82,6 @@ public class OrderManager {
         }
         return updated;
     }
-
     // --------------------------------------------------------
     public boolean deleteOrder(Order order) {
         if (order.getCustomer() == null || order.getRoom() == null) {
