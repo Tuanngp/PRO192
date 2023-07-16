@@ -13,7 +13,7 @@ public class Validation {
     public static final String REGEX_NAME = "^[a-zA-Z ]*$";
     public static final String REGEX_NUMBER = "\\d*";
     public static final String REGEX_ADDRESS = "^[A-Za-z0-9 ]*$";
-    public static final String REGEX_GENDER = "\\b(?i)true|false+\\b";
+    public static final String REGEX_GENDER = "\\b(?i)true|false\\b";
     public static final String REGEX_CONFIRM = "(?i)yes|no+";
     public static final String REGEX_RANK = "(?i)member|silver|gold|diamond+";
     public static final String REGEX_EMAIL = "^[A-Za-z0-9+_.-]*@*[A-Za-z0-9.-]*$";
