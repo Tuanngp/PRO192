@@ -117,8 +117,8 @@ public class EmployeeManager {
         while ((line = br.readLine()) != null) {
             String[] data = line.split(",");
             if (data.length == 9) {
-                String id = Validation.checkValue(data[0].substring(2), Validation.REGEX_ID);
-                String idFormat = "KH"+id;
+                String id = Validation.checkValue(data[0].substring(2), Validation.REGEX_ID_NV);
+                String idFormat = "NV"+id;
                 String name = Validation.checkValue(data[1], Validation.REGEX_NAME);
                 String phone = Validation.checkValue(data[2], Validation.REGEX_NUMBER);
                 String address = Validation.checkValue(data[3], Validation.REGEX_ADDRESS);

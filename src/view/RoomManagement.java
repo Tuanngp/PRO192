@@ -65,7 +65,7 @@ public class RoomManagement extends Menu<String>{
             public void execute(String selected) {
                 switch (selected) {
                     case "1":
-                        String roomID = Validation.getString("Enter Room ID: ", Validation.REGEX_ID);
+                        String roomID = Validation.getString("Enter Room ID: ", Validation.REGEX_NUMBER);
                         displayRoom(roomManager.searchRoom(p -> p.getRoomID().equals(roomID)));
                         break;
                     case "2":
@@ -90,7 +90,7 @@ public class RoomManagement extends Menu<String>{
         
         do {            
             System.out.println("Updating Room:");
-            String roomId = Validation.getString("(*)Enter Room ID want to update: ", Validation.REGEX_ID);
+            String roomId = Validation.getString("(*)Enter Room ID want to update: ", Validation.REGEX_NUMBER);
             updateRoom = roomManager.searchRoom(p -> p.getRoomID().equals(roomId));
         
             if(updateRoom.isEmpty()) {
@@ -103,7 +103,7 @@ public class RoomManagement extends Menu<String>{
         System.out.println("Inputting information to update (Enter to pass)");
         String roomIdNew=null;
         do {
-            roomIdNew = Validation.getString("Enter Room ID: ", Validation.REGEX_ID_UPDATE);
+            roomIdNew = Validation.getString("Enter Room ID: ", Validation.REGEX_NUMBER);
             if (roomManager.isDupplication(roomIdNew)) {
                 System.out.println("Room " + roomIdNew + " has been existed! Try again please.");
             }
@@ -140,7 +140,7 @@ public class RoomManagement extends Menu<String>{
                     case "2":
                         String roomId ;
                         do{
-                            roomId = Validation.getString("Enter Room ID: ", Validation.REGEX_ID);
+                            roomId = Validation.getString("Enter Room ID: ", Validation.REGEX_NUMBER);
                             if(!roomManager.isDupplication(roomId)) {
                                 System.out.println("Room " + roomId + " not exist!");
                             }

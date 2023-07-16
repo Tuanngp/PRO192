@@ -28,7 +28,7 @@ public class CustomerManager {
         while ((line = br.readLine()) != null) {
             String[] data = line.split(",");
             if (data.length == 8) {
-                String id = Validation.checkValue(data[0].substring(2), Validation.REGEX_ID);
+                String id = Validation.checkValue(data[0].substring(2), Validation.REGEX_ID_KH_UPDATE);
                 String idFormat = "KH"+id;
                 String name = Validation.checkValue(data[1], Validation.REGEX_NAME);
                 String phone = Validation.checkValue(data[2], Validation.REGEX_NUMBER);
@@ -130,10 +130,12 @@ public class CustomerManager {
 //    ------------------------------------------------------------------------------
     public boolean deleteCustomer(String id, String name, String phone, String email) {
         ArrayList<Customer> customersDeleted = search(p -> p.getId().equalsIgnoreCase(id) 
-                                                                && p.getName().equalsIgnoreCase(name)
-                                                                && p.getPhone().equalsIgnoreCase(phone)
-                                                                && p.getEmail().equalsIgnoreCase(email)) ;
-        
+                                                        || p.getName().equalsIgnoreCase(name)
+                                                        || p.getPhone().equalsIgnoreCase(phone)
+                                                        || p.getEmail().equalsIgnoreCase(email)) ;
+        for(Customer cus: customersDeleted ) {
+            customers.remove(cus);
+        }
         return !customersDeleted.isEmpty();
     }
 //    ------------------------------------------------------------------------------

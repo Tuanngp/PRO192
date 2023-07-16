@@ -58,14 +58,14 @@ public class CustomerManagement extends Menu<String>{
     }
     
     public void addCustomer() {
-        String id = Validation.getString("(*)Enter customer's id: ", Validation.REGEX_ID);
+        String id = Validation.getString("(*)Enter customer's id: ", Validation.REGEX_ID_KH);
         String name = Validation.getString("Enter customer's name: ", Validation.REGEX_NAME);
         String phone = Validation.getString("Enter customer's phone:", Validation.REGEX_NUMBER);
         String address = Validation.getString("Enter Customer Address: ", Validation.REGEX_ADDRESS);
         Boolean gender = Boolean.parseBoolean(Validation.getString("(*)Enter Customer Gender (true=male|false=female): ", Validation.REGEX_GENDER));
         LocalDate dateOfBirth = Validation.getLocalDate(Validation.getDate("Enter customer's date of birth: "));
         String email = Validation.getString("Enter customer's email: ", Validation.REGEX_EMAIL);
-        Customer customer = new Customer(id, name, phone, address, gender, dateOfBirth, email, "Member");
+        Customer customer = new Customer(id, name, phone, address, gender, dateOfBirth, email, "member");
         if(customerManager.addCustomer(customer)) { 
             System.out.println("Customer " + id + " has been added successfully.");
         } else {
@@ -74,10 +74,10 @@ public class CustomerManagement extends Menu<String>{
     }
 
     public static Customer getCustomer(String id) {
-        String name = Validation.getString("(*)Enter customer's name: ", Validation.REGEX_NAME);
-        String phone = Validation.getString("(*)Enter customer's phone:", Validation.REGEX_NUMBER);
+        String name = Validation.getString("Enter customer's name: ", Validation.REGEX_NAME);
+        String phone = Validation.getString("Enter customer's phone:", Validation.REGEX_NUMBER);
         String address = Validation.getString("Enter Customer Address: ", Validation.REGEX_ADDRESS);
-        Boolean gender = Boolean.parseBoolean(Validation.getString("Enter Customer Gender (true=male|false=female): ", Validation.REGEX_GENDER));
+        Boolean gender = Boolean.parseBoolean(Validation.getString("(*)Enter Customer Gender (true=male|false=female): ", Validation.REGEX_GENDER));
         LocalDate dateOfBirth = Validation.getLocalDate(Validation.getDate("Enter customer's date of birth: "));
         String email = Validation.getString("Enter customer's email: ", Validation.REGEX_EMAIL);
         Customer customer = new Customer(id, name, phone, address, gender, dateOfBirth, email, "member");
@@ -92,7 +92,7 @@ public class CustomerManagement extends Menu<String>{
                 ArrayList<Customer> rs = null;
                 switch(selected){
                     case "1":
-                        String val = "KH"+Validation.getString("Enter ID's Customer you want to search: ", Validation.REGEX_ID);
+                        String val = "KH"+Validation.getString("Enter ID's Customer you want to search: ", Validation.REGEX_ID_KH);
                         rs = customerManager.search(p -> p.getId().equalsIgnoreCase(val));
                         break;
                     case "2":
@@ -131,15 +131,15 @@ public class CustomerManagement extends Menu<String>{
         Customer customer = null;
         while(customer==null) {
             try {
-                String id = Validation.getString("Enter ID's Customer you want to update: ", Validation.REGEX_ID);
-                customer = customerManager.search(p -> p.getId().equalsIgnoreCase("KH"+id)).get(0);
+                String id = Validation.getString("Enter ID's Customer you want to update: ", Validation.REGEX_ID_KH);
+                customer = customerManager.search(p -> p.getId().equalsIgnoreCase(id)).get(0);
             } catch (Exception e) {
                 customer = null;
             }
         }
 
         // Enter new information
-        String idNew = "KH" + Validation.getString("Enter new ID customer: ", Validation.REGEX_ID);
+        String idNew = Validation.getString("Enter new ID customer: ", Validation.REGEX_ID_KH_UPDATE);
         String name = Validation.getString("Enter new name's customer: ",Validation.REGEX_NAME);
         String phone = Validation.getString("Enter new phone's customer: ", Validation.REGEX_NUMBER);
         LocalDate dateOfBirthStr = Validation.getLocalDate(Validation.getDate("Enter new date of birth(dd/MM/yyyy): "));
@@ -162,7 +162,7 @@ public class CustomerManagement extends Menu<String>{
             public void execute(String selected) {
                 switch(selected) {
                     case "1":
-                        String id = Validation.getString("Enter Customer ID: ", Validation.REGEX_ID);
+                        String id = Validation.getString("Enter Customer ID: ", Validation.REGEX_ID_KH);
                         if(customerManager.deleteCustomer(id, null, null, null)) {
                             System.out.println("Customer " + id + " has been deteted successfully." );
                         } else {
@@ -196,6 +196,7 @@ public class CustomerManagement extends Menu<String>{
                 }
             }
         };
+        deleteMenu.run();
     }
     
 }
