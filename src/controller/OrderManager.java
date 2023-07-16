@@ -47,6 +47,11 @@ public class OrderManager {
     public ArrayList<Order> getOrders() {
         return orders;
     }
+    // -------------------------------------------------
+    public boolean isDupplication(int id) {
+        return !search(p-> p.getOrderID()==id).isEmpty();
+    }
+
     // ---------------------------------------------------------
 
     public ArrayList<Order> search(Predicate<Order> p) {
