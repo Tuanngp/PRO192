@@ -32,11 +32,7 @@ public class OrderManagement extends Menu<String> {
     public void execute(String n) {
         switch (n) {
             case "1":
-<<<<<<< HEAD
                 displayAllOrders(); 
-=======
-                displayAllOrder();
->>>>>>> 1574ff647bbfa0666cbde19537f76b571f26175b
                 break;
             case "2":
                 addOrder();
@@ -60,7 +56,7 @@ public class OrderManagement extends Menu<String> {
                 System.out.println("[ERROR] Invalid input! Please try again.");
         }
     }
-<<<<<<< HEAD
+
     //--------------------------------------------------------------------------
 
     private void addOrder() {
@@ -79,7 +75,7 @@ public class OrderManagement extends Menu<String> {
 
         if (orderManager.addOrder(order)) {
             System.out.println("Order placed successfully.");
-=======
+
 
     // --------------------------------------------------------------------------
     public void addOrder() {
@@ -101,38 +97,33 @@ public class OrderManagement extends Menu<String> {
         }
         if (orderManager.addOrder(order)) {
             System.out.println("Order room successful.");
->>>>>>> 1574ff647bbfa0666cbde19537f76b571f26175b
         } else {
             System.out.println("Failed to place the order.");
         }
     }
 
     // ------------------------------------------------------------------------------
-<<<<<<< HEAD
+
     public void displayAllOrders() {
         if(orderManager.getOrders().isEmpty()) {
             System.out.println("No orders found.");
-=======
+
     public void displayAllOrder() {
         if (!orderManager.getOrders().isEmpty()) {
             orderManager.displayAllOrder();
->>>>>>> 1574ff647bbfa0666cbde19537f76b571f26175b
         } else {
             orderManager.displayAllOrder();
         }
     }
-<<<<<<< HEAD
     //--------------------------------------------------------------------------
     private void updateOrder() {
         int orderId = Integer.parseInt(Validation.getString("Enter the order ID: ", Validation.REGEX_NUMBER));
         Order order = orderManager.search(p -> p.getOrderID() == orderId).get(0);
-=======
 
     // --------------------------------------------------------------------------
     public void updateOrder() {
         String[] updateOrder = { "Update Room", "Update day rent", "Exit" };
         Menu menuUpdate = new Menu("Updating order", updateOrder) {
->>>>>>> 1574ff647bbfa0666cbde19537f76b571f26175b
 
         if (order == null) {
             System.out.println("Order with ID " + orderId + " does not exist.");
@@ -143,45 +134,34 @@ public class OrderManagement extends Menu<String> {
         Menu updateMenu = new Menu("Updating Order", updateOptions) {
             @Override
             public void execute(String selected) {
-<<<<<<< HEAD
-=======
                 int orderID = Integer.parseInt(Validation.getString("Enter ID's order: ", Validation.REGEX_NUMBER));
                 Order order = orderManager.search(p -> p.getOrderID() == orderID).get(0);
->>>>>>> 1574ff647bbfa0666cbde19537f76b571f26175b
                 switch (selected) {
                     case "1":
                         String roomID = Validation.getString("Enter new Room ID: ", Validation.REGEX_NUMBER);
                         Room newRoom = roomManager.searchRoom(p -> p.getRoomID().equals(roomID)).get(0);
                         if (orderManager.updateOrder(order, newRoom, -1)) {
-<<<<<<< HEAD
                             System.out.println("Order updated successfully.");
-=======
                             System.out.println("Update successfull.");
->>>>>>> 1574ff647bbfa0666cbde19537f76b571f26175b
                         } else {
                             System.out.println("Failed to update the order.");
                         }
                         break;
                     case "2":
-<<<<<<< HEAD
                         int dayRent = Integer.parseInt(Validation.getString("Enter new day rent: ", Validation.REGEX_NUMBER));
                         if (orderManager.updateOrder(order, null, dayRent)) {
                             System.out.println("Order updated successfully.");
-=======
                         int dayRent = Integer
                                 .parseInt(Validation.getString("Enter new day rent: ", Validation.REGEX_NUMBER));
                         if (orderManager.updateOrder(order, null, dayRent)) {
                             System.out.println("Update successfull.");
->>>>>>> 1574ff647bbfa0666cbde19537f76b571f26175b
                         } else {
                             System.out.println("Failed to update the order.");
                         }
                         break;
                     case "3":
-<<<<<<< HEAD
                         System.out.println("Exiting order update.");
                         break;
-=======
                         System.out.println("Exit updating order.");
                 }
             }
@@ -213,12 +193,11 @@ public class OrderManagement extends Menu<String> {
                         val = Validation.getString("Enter type of room you want to search", Validation.ROOM_TYPE);
                         rs = orderManager.search(p -> p.getRoom().getRoomType().equalsIgnoreCase(val));
                         break;
->>>>>>> 1574ff647bbfa0666cbde19537f76b571f26175b
                     default:
                         System.out.println("[ERROR] Invalid input! Please try again.");
                         break;
                 }
-<<<<<<< HEAD
+
             }
         };
         updateMenu.run();
@@ -268,7 +247,7 @@ public class OrderManagement extends Menu<String> {
     private void deleteOrder() {
         String customerId = Validation.getString("Enter the customer ID to delete the order: ", Validation.REGEX_ID);
         String confirmation = Validation.getString("Are you sure you want to delete the order? (Yes/No): ", Validation.REGEX_CONFIRM);
-=======
+
                 System.out.println(rs);
             }
         };
@@ -278,12 +257,8 @@ public class OrderManagement extends Menu<String> {
     // --------------------------------------------------------------------------
     public void deleteOrder() {
         String id = Validation.getString("Enter customer's id to delete order:", Validation.REGEX_ID);
-        String confirmation = Validation.getString("Are you sure you want to delete order? (Yes/No): ",
-                Validation.REGEX_CONFIRM);
->>>>>>> 1574ff647bbfa0666cbde19537f76b571f26175b
-
+        String confirmation = Validation.getString("Are you sure you want to delete order? (Yes/No): ", Validation.REGEX_CONFIRM);
         if (confirmation.equalsIgnoreCase("yes")) {
-<<<<<<< HEAD
             Order order = orderManager.search(p -> p.getCustomer().getId().equalsIgnoreCase(customerId)).get(0);
             if (order != null) {
                 if (orderManager.deleteOrder(order)) {
@@ -291,16 +266,16 @@ public class OrderManagement extends Menu<String> {
                 } else {
                     System.out.println("Failed to delete the order.");
                 }
-=======
-            if (orderManager.deleteOrder(order)) {
-                System.out.println("Order " + id + " has been deleted successfully.");
->>>>>>> 1574ff647bbfa0666cbde19537f76b571f26175b
-            } else {
-                System.out.println("Order with customer ID " + customerId + " does not exist.");
+
+                if (orderManager.deleteOrder(order)) {
+                    System.out.println("Order " + id + " has been deleted successfully.");
+                } else {
+                    System.out.println("Order with customer ID " + customerId + " does not exist.");
+                }
             }
         }
     }
-<<<<<<< HEAD
+
     //--------------------------------------------------------------------------
     private void sortOrdersByDayRent() {
         System.out.println("List of orders after sorting by day rent:");
@@ -315,13 +290,12 @@ public class OrderManagement extends Menu<String> {
             randomNumber = 1000 + random.nextInt(9000);
         } while (orderManager.isDupplication(randomNumber));
         return randomNumber;
-=======
+    }
 
     // --------------------------------------------------------------------------
     public void sortOrderByDayRent() {
         System.out.println("List order after sort: ");
         orderManager.sortOrder();
         displayAllOrder();
->>>>>>> 1574ff647bbfa0666cbde19537f76b571f26175b
     }
 }
