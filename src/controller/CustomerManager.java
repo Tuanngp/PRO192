@@ -76,10 +76,6 @@ public class CustomerManager {
             cus.setEmail(email);
             updated = true;
         }
-        if (dayRent > 0 && dayRent<32) {
-            cus.setDayRent(dayRent);
-            updated = true;
-        }
         return updated;
     }
 //    ------------------------------------------------------------------------------

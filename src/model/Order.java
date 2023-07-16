@@ -9,7 +9,7 @@ public class Order {
     private Room room;
     private Customer customer;
     private int orderID;
-
+    private int dayRent;
     
     public Order() {
     }
@@ -36,9 +36,17 @@ public class Order {
         this.customer = customer;
     }
 
+    public int getDayRent() {
+        return dayRent;
+    }
+
+    public void setDayRent(int dayRent) {
+        this.dayRent = dayRent;
+    }
+
     @Override
     public String toString() {
-        return customer.toString() + "\t" + room.toString();
+        return orderID + "\t" + customer.toString() + "\t" + room.toString();
     }
 
     /**

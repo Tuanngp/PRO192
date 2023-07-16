@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.Scanner;
 import java.util.function.Predicate;
 import model.Order;
+import model.Bill;
 import model.person.Customer;
 import model.room.Room;
 import view.RoomManagement;
@@ -13,6 +14,7 @@ import view.RoomManagement;
 public class OrderManager {
     private ArrayList<Order> orders = new ArrayList<>();
     private Scanner sc = new Scanner(System.in);
+    private RoomManager roomManager = new RoomManager();
     private RoomManagement roomManagement = new RoomManagement();
     // -------------------------------------------------
     public OrderManager() {
@@ -55,9 +57,17 @@ public class OrderManager {
         return rs;
     }
 // -------------------------------------------------------
-    public boolean updateOrder(Customer customer, Room room) {
+    public boolean updateOrder(Order order,Room room,int dayRent) {
         boolean updated = false;
-        
+        if (dayRent > 0 && dayRent != order.getDayRent() ) {
+            order.setDayRent(dayRent);
+            updated = true;
+        }
+
+        if (room.getStatus()==false){
+            order.getRoom().setStatus(true);
+            updated = true;
+        }
         return updated;
     }
 // --------------------------------------------------------
@@ -72,6 +82,6 @@ public class OrderManager {
 
 // -----------------------------------------------------------
     public void sortOrder() {
-        Collections.sort(orders, Comparator.comparingInt(order -> order.getCustomer().getDayRent()));
+        Collections.sort(orders, Comparator.comparingInt(order -> order.getDayRent()));
     }
 }
