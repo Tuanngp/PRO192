@@ -108,7 +108,7 @@ public class OrderManager {
                     String roomType = data[1];
                     float price = Float.parseFloat(data[2]);
                     boolean status = Boolean.parseBoolean(data[3]);
-                    String customerID = Validation.checkValue(data[4].substring(2), Validation.REGEX_ID_KH);
+                    String customerID = Validation.checkValue(data[4], Validation.REGEX_ID_KH);
                     String customerName = Validation.checkValue(data[5], Validation.REGEX_NAME);
                     String customerPhone = Validation.checkValue(data[6], Validation.REGEX_NUMBER);
                     String customerAddress = Validation.checkValue(data[7], Validation.REGEX_ADDRESS);
