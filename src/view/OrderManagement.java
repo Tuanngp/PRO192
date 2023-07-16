@@ -1,3 +1,4 @@
+
 package view;
 
 import java.util.ArrayList;
@@ -201,4 +202,3 @@ public class OrderManagement extends Menu<String> {
         return randomNumber;
     }
 }
-

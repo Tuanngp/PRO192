@@ -6,21 +6,27 @@ public class Employee extends Person {
 
     private int dayWork;
     private String role;
-    private float salary;
 
-    public Employee(String id, String name, String phone, String address, boolean gender, LocalDate dateOfBirth,
-            String email, int dayWork, String role, float salary) {
+//    public Employee(String id, String name, String phone, String address, boolean gender, LocalDate dateOfBirth,
+//            String email, int dayWork, String role, float salary) {
+//        super(id, name, phone, address, gender, dateOfBirth, email);
+//        this.dayWork = dayWork;
+//        this.role = role;
+//        this.salary = salary;
+//    }
+
+   public Employee(String id, String name, String phone, String address, boolean gender, LocalDate dateOfBirth,
+            String email, int dayWork, String role) {
         super(id, name, phone, address, gender, dateOfBirth, email);
         this.dayWork = dayWork;
         this.role = role;
-        this.salary = salary;
     }
-
-    public Employee(int dayWork, String role, float salary) {
-        this.dayWork = dayWork;
-        this.role = role;
-        this.salary = salary;
-    }
+   
+//    public Employee(int dayWork, String role, float salary) {
+//        this.dayWork = dayWork;
+//        this.role = role;
+//        this.salary = salary;
+//    }
 
     public int getDayWork() {
         return dayWork;
@@ -38,17 +44,22 @@ public class Employee extends Person {
         this.role = role;
     }
 
-    public float getSalary() {
+//    public float getSalary() {
+//        return salary;
+//    }
+//
+//    public void setSalary(float salary) {
+//        this.salary = salary;
+//    }
+    public double calculateSalary(){
+        double salary;
+        if(role.equalsIgnoreCase("staff")) salary = dayWork*350000;
+        else salary = dayWork*500000;
         return salary;
     }
-
-    public void setSalary(float salary) {
-        this.salary = salary;
-    }
-
     @Override
     public String toString() {
         String genderString = isGender() ? "male" : "female";
-        return super.toString() + String.format(" %-4d %-8s %-12f", dayWork, role, salary);
+        return super.toString() + String.format(" %-4d %-8s %-12.0f", dayWork, role, calculateSalary());
     }
 }
