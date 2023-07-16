@@ -13,7 +13,7 @@ public class Customer extends Person{
     public Customer(String id, String name, String phone, String address, boolean gender, LocalDate dateOfBirth,String email, String rank) {
         super(id, name, phone, address, gender, dateOfBirth, email);
         this.rank = rank;
-        setName("KH" + id);
+        // setName("KH" + id);
     }
     
     public String getRank() {

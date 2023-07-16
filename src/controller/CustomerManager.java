@@ -47,14 +47,14 @@ public class CustomerManager {
                 }
                 String email = Validation.checkValue(data[6], Validation.REGEX_EMAIL);
                 String rank = Validation.checkValue(data[7], Validation.REGEX_RANK);
-                customers.add(new Customer(idFormat, name, phone, address, gender, dateOfBirth, email, rank));
+                Customer customer = new Customer(idFormat, name, phone, address, gender, dateOfBirth, email, rank);
+                customers.add(customer);
             } else {
                 System.out.println("Invalid file data");
             }
         }
     } catch (Exception e) {
-        System.out.println("Error occurred while loading customers from file: " + filename);
-        e.printStackTrace();
+        System.err.println("Error occurred while loading customers from file: " + filename);
     }
 }
 
