@@ -7,7 +7,7 @@ import controller.OrderManager;
 import model.Order;
 
 public class OrderManagement extends Menu <String>{
-    static String[] menu = {"Add Room Order","Display All Room Order","Update Order's Customer.",
+    static String[] menu = {"Display All Room Order","Add Room Order", "Update Order's Customer.",
                             "Search Room Order","Release Room",
                             "Sort room order by day rented","Exit."};
     private Scanner sc = new Scanner(System.in);
@@ -19,16 +19,16 @@ public class OrderManagement extends Menu <String>{
     public void execute(String n ){
         switch(n){
             case "1":
-                addOrder(); 
-                break;
-            case "2": 
                 displayAllOrder(); 
                 break;
+            case "2": 
+                addOrder(); 
+                break;
             case "3": 
-                orderUpdatingAll(); 
+                updateOrder(); 
                 break;
             case "4": 
-                orderSearching(); 
+                searchOrder(); 
                 break;
             case "5":
                 deleteOrder(); 
@@ -60,7 +60,7 @@ public class OrderManagement extends Menu <String>{
         }
     }
     //--------------------------------------------------------------------------
-    public void orderUpdatingAll() {
+    public void updateOrder() {
         if(orderManager.updateOrder(null, null)) {
             System.out.println("Update successfull.");
         } else {
@@ -68,7 +68,7 @@ public class OrderManagement extends Menu <String>{
         }
     }
     //--------------------------------------------------------------------------
-    public void orderSearching(){
+    public void searchOrder(){
         String[] mSearch ={"By Customer ID","By Customer Name","Type Of Room", "Exit."};
         Menu m = new Menu("Order Searching System!!!",mSearch) {
             @Override
