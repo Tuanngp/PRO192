@@ -67,6 +67,18 @@ public class CustomerManagement extends Menu<String>{
             System.out.println("[Error] Unable to add customer.");
         }
     }
+
+    public static Customer getCustomer(String id) {
+        String name = Validation.getString("(*)Enter customer's name: ", Validation.REGEX_NAME);
+        String phone = Validation.getString("(*)Enter customer's phone:", Validation.REGEX_NUMBER);
+        String address = Validation.getString("Enter Customer Address: ", Validation.REGEX_ADDRESS);
+        Boolean gender = Boolean.parseBoolean(Validation.getString("Enter Customer Gender (true=male|false=female): ", Validation.REGEX_GENDER));
+        LocalDate dateOfBirth = Validation.getDate("Enter customer's date of birth: ");
+        String email = Validation.getString("Enter customer's email: ", Validation.REGEX_EMAIL);
+        int dayRent = Validation.getDayWork("(*)Enter the number of rental days: ");
+        Customer customer = new Customer(id, name, phone, address, gender, dateOfBirth, email, dayRent);
+        return customer;
+    }
     
     public void searchCustomer() {
         String[] searchOptions = {"Search Customer by ID", "Search Customer by Name", "Search Customer by Phone", "Search Customer by Email", "Exit"};

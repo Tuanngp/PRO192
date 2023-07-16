@@ -105,5 +105,14 @@ public class RoomManager {
         }
         return cnt>0;
     }
+
+    public boolean orderRoom(Room room) {
+        
+        if(room.getStatus()==false) {
+            room.setStatus(true);
+            return true;
+        }
+        return false;
+    }
 //    ------------------------------------------------------------------------------
 }

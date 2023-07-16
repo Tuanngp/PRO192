@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 import controller.OrderManager;
 import model.Order;
+import model.person.Customer;
+import model.room.Room;
 
 public class OrderManagement extends Menu <String>{
     static String[] menu = {"Display All Room Order","Add Room Order", "Update Order's Customer.",
@@ -45,11 +47,14 @@ public class OrderManagement extends Menu <String>{
     }
     //--------------------------------------------------------------------------
     public void addOrder(){
-        Order order = null;
-        if (orderManager.addOrder(order)) 
-            System.out.println("Customer rent room successfully!!");
-        else 
-            System.out.println("Failed in renting room!!");
+        String id = Validation.getString("(*)Enter customer's id: ", Validation.REGEX_ID);
+        Customer customer = orderManager.search(p -> p.getCustomer().getId().equalsIgnoreCase(id)).get(0);
+        if(customer == null) {
+            Customer customer1 = CustomerManagement.getCustomer(id);
+            Room room = RoomManagement.getRoom();
+        } else {
+            Room 
+        }
     }
 
     public void displayAllOrder() {

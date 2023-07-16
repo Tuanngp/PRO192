@@ -244,5 +244,18 @@ public class RoomManagement extends Menu<String>{
         };
         statisticMenu.run();
     }
+
+    public Room getRoom() {
+        displayRoom();
+        String roomId = Validation.getString("Enter Room ID: ", Validation.ROOM_TYPE);
+        Room room = roomManager.searchRoom(p -> p.getRoomID().equals(roomId)).get(0);
+        if(roomManager.orderRoom(room)) {
+            System.out.println("Order room " + roomId + " has been successfully.");
+        } else {
+            System.out.println("Room " + roomId + " is been failed.");
+        }
+        return null;
+
+    }
     
 }
