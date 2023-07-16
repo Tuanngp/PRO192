@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import model.Customer;
 
 public class CustomerManagement extends Menu<String>{
-    static String[] customersMenu = {"Display All Customer","Add Customer"};
+    static String[] customersMenu = {"Display All Customer","Add Customer", "Search Customer", "Update Customer", "Delete Customer", "Exit"};
     CustomerManager customerManager = new CustomerManager();
     public CustomerManagement() {
         super("Customer Management System", customersMenu );
@@ -16,7 +16,25 @@ public class CustomerManagement extends Menu<String>{
     public void execute(String selected) {
         switch(selected) {
             case "1":
+                displayCustomers();
+                break;
+            case "2":
                 addCustomer();
+                break;
+            case "3":
+                searchCustomer();
+                break;
+            case "4":
+                updateCustomer();
+                break;
+            case "5":
+                deleteCustomer();
+                break;
+            case "6":
+                System.out.println("Exit Customer Management System!");
+                break;
+            default:
+                System.out.println("[ERROR] Invalid input! Please try again.");
                 break;
         }
     }
@@ -58,7 +76,7 @@ public class CustomerManagement extends Menu<String>{
                 switch(selected){
                     case "1":
                         String val = Validation.getString("Enter ID's Customer you want to search", Validation.REGEX_ID);
-                        rs = customerManager.search(p->p.getId().equalsIgnoreCase(val));
+                        rs = customerManager.search(p -> p.getId().equalsIgnoreCase(val));
                         break;
                     case "2":
                         val = Validation.getString("Enter Name's Customer you want to search", Validation.REGEX_NAME);
@@ -85,21 +103,73 @@ public class CustomerManagement extends Menu<String>{
                     }
             }
         };
+        searchMenu.run();
     }
     
     public void updateCustomer() {
         System.out.println("Updating Customer");
         System.out.println("Input information you want to update (Enter to pass): ");
-
-        String id = Validation.getString("Enter ID's customer: ", Validation.REGEX_ID);
-        String name = Validation.getString("Enter name's customer: ",Validation.REGEX_NAME);
-        String phone = Validation.getString("Enter phone's customer: ", Validation.REGEX_NUMBER);
-        LocalDate dateOfBirthStr = Validation.getDate("Enter date of birth(dd/MM/yyyy): ");
-        String address = Validation.getString("Enter address: ",Validation.REGEX_ADDRESS);
-        String genderStr = Validation.getString("Enter gender((true = male;false = female)",Validation.REGEX_GENDER);
-        String email = Validation.getString("Enter email: ", Validation.REGEX_EMAIL);
-
+        // get Customer to Update 
+        String id = Validation.getString("Enter ID's Customer you want to update: ", Validation.REGEX_ID);
+        Customer customer = customerManager.search(p -> p.getId().equalsIgnoreCase(id)).get(0);
+        // Enter new information
+        String idNew = Validation.getString("Enter new ID customer: ", Validation.REGEX_ID);
+        String name = Validation.getString("Enter new name's customer: ",Validation.REGEX_NAME);
+        String phone = Validation.getString("Enter new phone's customer: ", Validation.REGEX_NUMBER);
+        LocalDate dateOfBirthStr = Validation.getDate("Enter new date of birth(dd/MM/yyyy): ");
+        String address = Validation.getString("Enter new address: ",Validation.REGEX_ADDRESS);
+        String genderStr = Validation.getString("Enter new gender((true = male;false = female)",Validation.REGEX_GENDER);
+        String email = Validation.getString("Enter new email: ", Validation.REGEX_EMAIL);
+        int dayRent = Validation.getDayWork("Enter new Day Rent: ");
+        // check Update 
+        if(customerManager.updateCustomer(customer, idNew, name, phone, address, genderStr, dateOfBirthStr, email, dayRent)) {
+            System.out.println("Customer " + customer.getId() + " has been updated successfully.");
+        } else {
+            System.out.println("[ERROR] Unable to update customer.");
+        }
     }
-    
+
+    public void deleteCustomer() {
+        String[] deleteOptions = {"Delete Customer by ID", "Delete Customer by Name", "Delete Customer by Phone", "Delete Customer by Email", "Exit"};
+        Menu deleteMenu = new Menu("Deleting Customer", deleteOptions) {
+            @Override
+            public void execute(String selected) {
+                switch(selected) {
+                    case "1":
+                        String id = Validation.getString("Enter Customer ID: ", Validation.REGEX_ID);
+                        if(customerManager.deleteCustomer(id, null, null, null)) {
+                            System.out.println("Customer " + id + " has been deteted successfully." );
+                        } else {
+                            System.out.println("[ERROR] Unable to delete customer.");
+                        }
+                        break;
+                    case "2":
+                        String name = Validation.getString("Enter Customer Name: ", Validation.REGEX_NAME);
+                        if(customerManager.deleteCustomer(null, name, null, null)) {
+                            System.out.println("Customer " + name + " has been deteted successfully." );
+                        } else {
+                            System.out.println("[ERROR] Unable to delete customer.");
+                        }
+                        break;
+                    case "3":
+                        String phone = Validation.getString("Enter Customer Phone: ", Validation.REGEX_NUMBER);
+                        if(customerManager.deleteCustomer(null, null, phone, null)) {
+                            System.out.println("Customer have Phone number: " + phone + " has been deteted successfully." );
+                        } else {
+                            System.out.println("[ERROR] Unable to delete customer.");
+                        }
+                        break;
+                    case "4":
+                        String email = Validation.getString("Enter Customer Email: ", Validation.REGEX_EMAIL);
+                        if(customerManager.deleteCustomer(null, null, null, email)) {
+                            System.out.println("Customer have email: " + email + " has been deteted successfully." );
+                        } else {
+                            System.out.println("[ERROR] Unable to delete customer.");
+                        }
+                        break;
+                }
+            }
+        };
+    }
     
 }
