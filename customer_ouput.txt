@@ -1,5 +1,5 @@
-KH001    Khkh001          0956812347   29 Hoang Dieu    male     20/10/1996   jack_h@gmail.com      silver    
-KH002    Khkh002          0915677741   102 Truong Chinh female   19/02/1999   jenBlack.@gmail.com   member    
-KH003    Khkh003          0911145733   49 Berlin        male     11/12/2000   orn@gmail.com         gold      
-KH004    Khkh004          0978412356   69 Victory St    female   30/01/2002   pink@gmail.com        diamond   
-KH005    Khkh005          0944556610   111 Green St     female   09/12/1990   roar@gmail.com        gold      
+KH001    Jack Hammer      0956812347   29 Hoang Dieu    male     20/10/1996   jack_h@gmail.com      silver    
+KH002    Jenny Blacky     0915677741   102 Truong Chinh  female   19/02/1999   jenBlack.@gmail.com   member    
+KH003    Loren Orn        0911145733   49 Berlin        male     11/12/2000   orn@gmail.com         gold      
+KH004    Rose Pink        0978412356   69 Victory St    female   30/01/2002   pink@gmail.com        diamond   
+KH005    Roxy Ardex       0944556610   111 Green St     female   09/12/1990   roar@gmail.com        gold      
