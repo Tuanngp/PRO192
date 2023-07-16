@@ -28,8 +28,7 @@ public class CustomerManager {
         while ((line = br.readLine()) != null) {
             String[] data = line.split(",");
             if (data.length == 8) {
-                String id = Validation.checkValue(data[0].substring(2), Validation.REGEX_ID_KH_UPDATE);
-                String idFormat = "KH"+id;
+                String id = Validation.checkValue(data[0], Validation.REGEX_ID_KH);
                 String name = Validation.checkValue(data[1], Validation.REGEX_NAME);
                 String phone = Validation.checkValue(data[2], Validation.REGEX_NUMBER);
                 String address = Validation.checkValue(data[3], Validation.REGEX_ADDRESS);
@@ -47,7 +46,7 @@ public class CustomerManager {
                 }
                 String email = Validation.checkValue(data[6], Validation.REGEX_EMAIL);
                 String rank = Validation.checkValue(data[7], Validation.REGEX_RANK);
-                Customer customer = new Customer(idFormat, name, phone, address, gender, dateOfBirth, email, rank);
+                Customer customer = new Customer(id, name, phone, address, gender, dateOfBirth, email, rank);
                 customers.add(customer);
             } else {
                 System.out.println("Invalid file data");

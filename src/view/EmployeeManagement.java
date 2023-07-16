@@ -74,7 +74,7 @@ public class EmployeeManagement extends Menu<String> {
         String email = Validation.getString("Enter Employee's email: ", Validation.REGEX_EMAIL);
         int dayWork = Validation.getDayWork("Enter Employee's DayWork:");
         String role = Validation.getString("Enter Employee's Role:", Validation.REGEX_ROLE);
-        Employee employee = new Employee("NV"+id, name, phone, address, gender, dateOfBirth, email, dayWork, role);
+        Employee employee = new Employee(id, name, phone, address, gender, dateOfBirth, email, dayWork, role);
         if (employeeManager.addEmployee(employee)) {
             System.out.println("Employee " + id + " has been added successfully.");
         } else {
