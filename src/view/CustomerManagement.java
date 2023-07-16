@@ -11,6 +11,12 @@ public class CustomerManagement extends Menu<String>{
     CustomerManager customerManager = new CustomerManager();
     public CustomerManagement() {
         super("Customer Management System", customersMenu );
+        try{
+            customerManager.loadCustomersFromFile("customer.txt");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
    
     @Override
