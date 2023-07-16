@@ -2,6 +2,7 @@ package controller;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -127,4 +128,14 @@ public class CustomerManager {
         return !customersDeleted.isEmpty();
     }
 //    ------------------------------------------------------------------------------
-}
+    public void saveFileAndExit(String fileName){
+        try (FileWriter writer = new FileWriter(fileName)) {
+        for (Customer customer : customers) {
+            writer.write(customer.toString()+"\n");
+        }
+        System.out.println("Data written to file "+fileName+" successfully.");
+        } catch (Exception e) {
+        System.out.println("Error occurred while writing data to file");
+        }
+    }
+    }
