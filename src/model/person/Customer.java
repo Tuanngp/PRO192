@@ -14,7 +14,6 @@ public class Customer extends Person{
         super(id, name, phone, address, gender, dateOfBirth, email);
         this.rank = rank;
     }
-
     
     public String getRank() {
         return rank;

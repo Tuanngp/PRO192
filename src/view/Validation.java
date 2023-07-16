@@ -16,6 +16,7 @@ public class Validation {
     public static final String REGEX_ADDRESS = "^[A-Za-z0-9 ]*$";
     public static final String REGEX_GENDER = "(?i)true|false*";
     public static final String REGEX_CONFIRM = "(?i)yes|no+";
+    public static final String REGEX_RANK = "(?i)member|silver|gold|diamond+";
     public static final String REGEX_EMAIL = "^[A-Za-z0-9+_.-]*@[A-Za-z0-9.-]*$";
     public static final String DATE_FORMAT= "dd/MM/yyyy";
     public static final String ROOM_TYPE= "(?i)single room|couple room";
@@ -125,5 +126,9 @@ public class Validation {
     }
 
     //--------------------------------------------------------------------------
+    public static String checkValue(String value,String regex){
+        if (value.matches(regex)) return value;
+        return null;
+    }
 }
 
