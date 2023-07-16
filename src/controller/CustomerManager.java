@@ -9,11 +9,7 @@ import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import model.person.Customer;
-<<<<<<< Updated upstream
 import view.Validation;
-=======
->>>>>>> Stashed changes
-
 public class CustomerManager {
     ArrayList<Customer> customers;
 
