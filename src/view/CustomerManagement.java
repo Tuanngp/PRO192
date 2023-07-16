@@ -87,19 +87,19 @@ public class CustomerManagement extends Menu<String>{
                 ArrayList<Customer> rs = null;
                 switch(selected){
                     case "1":
-                        String val = Validation.getString("Enter ID's Customer you want to search", Validation.REGEX_ID);
+                        String val = Validation.getString("Enter ID's Customer you want to search: ", Validation.REGEX_ID);
                         rs = customerManager.search(p -> p.getId().equalsIgnoreCase(val));
                         break;
                     case "2":
-                        val = Validation.getString("Enter Name's Customer you want to search", Validation.REGEX_NAME);
+                        val = Validation.getString("Enter Name's Customer you want to search: ", Validation.REGEX_NAME);
                         rs = customerManager.search(p->p.getName().equalsIgnoreCase(val));
                         break;
                     case "3":
-                        val = Validation.getString("Enter Phone's Customer you want to search");
+                        val = Validation.getString("Enter Phone's Customer you want to search: ");
                         rs = customerManager.search(p->p.getPhone().equals(val));
                         break;
                     case "4":
-                        val = Validation.getString("Enter Email's Customer you want to search");
+                        val = Validation.getString("Enter Email's Customer you want to search: ");
                         rs = customerManager.search(p->p.getEmail().equals(val));
                         break;
                     case "5":
