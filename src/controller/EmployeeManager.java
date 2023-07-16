@@ -40,11 +40,14 @@ public class EmployeeManager {
     }
 
     // ------------------------------------------------------------------------------
-    public ArrayList<Employee> search(Predicate<Employee> p) {
-        ArrayList<Employee> employeesSearched = new ArrayList<>();
-        for (Employee emp : employees)
-            employeesSearched.add(emp);
-        return employeesSearched;
+    public ArrayList<Employee> search(Predicate<Employee> predicate) {
+        ArrayList<Employee> rs = new ArrayList<>();
+        for (Employee employee : employees) {
+            if (predicate.test(employee)) {
+                rs.add(employee);
+            }
+        }
+        return rs;
     }
 
     // ------------------------------------------------------------------------------

@@ -39,10 +39,9 @@ public class CustomerManagement extends Menu<String>{
                 break;
             case "6":
                 System.out.println("Exit Customer Management System!");
-                break;
+                return;
             default:
                 System.out.println("[ERROR] Invalid input! Please try again.");
-                break;
         }
     }
     
@@ -98,7 +97,7 @@ public class CustomerManagement extends Menu<String>{
                         break;
                     case "2":
                         val = Validation.getString("Enter Name's Customer you want to search: ", Validation.REGEX_NAME);
-                        rs = customerManager.search(p->p.getName().equalsIgnoreCase(val));
+                        rs = customerManager.search(p->p.getName().contains(val));
                         break;
                     case "3":
                         val = Validation.getString("Enter Phone's Customer you want to search: ");
@@ -110,6 +109,7 @@ public class CustomerManagement extends Menu<String>{
                         break;
                     case "5":
                         System.out.println("Exit Searching Menu!");
+                        return;
                     default: 
                         System.out.println("[ERROR] Invalid input! Please try again.");
                         break;

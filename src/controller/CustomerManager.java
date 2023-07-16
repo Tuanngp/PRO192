@@ -78,10 +78,14 @@ public class CustomerManager {
         return !search(p -> p.getId().equals(id)).isEmpty();
     }
 //    ------------------------------------------------------------------------------
-    public ArrayList<Customer> search(Predicate<Customer> p) {
-        ArrayList<Customer> customerSearched = new ArrayList<>();
-        for(Customer cus : customers) customerSearched.add(cus);
-        return customerSearched;
+    public ArrayList<Customer> search(Predicate<Customer> predicate) {
+        ArrayList<Customer> rs = new ArrayList<>();
+        for (Customer customer : customers) {
+            if (predicate.test(customer)) {
+                rs.add(customer);
+            }
+        }
+        return rs;
     }
 //    ------------------------------------------------------------------------------
     public boolean updateCustomer(Customer cus, String id, String name, String phone, String address, String genderStr, LocalDate dateOfBirth, String email, String rank) {
