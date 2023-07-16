@@ -1,10 +1,11 @@
 package view;
 
 public class HotelManagement extends Menu<String>{
-    static String[] hotelMenu = {"Customer Management", "Room Management", "Order Management", "Menu"};
+    static String[] hotelMenu = {"Customer Management", "Room Management", "Order Management", "Employee Management", "Exit"};
     private CustomerManagement customerManagement = new CustomerManagement();
     private RoomManagement roomManagement = new RoomManagement();
     private OrderManagement orderManagement = new OrderManagement();
+    private EmployeeManagement employeeManagement = new EmployeeManagement();
     public HotelManagement(){
         super("Hotel Management System",hotelMenu);
     }
@@ -21,8 +22,13 @@ public class HotelManagement extends Menu<String>{
                 orderManagement.run();
                 break;
             case "4":
+                employeeManagement.run();
                 break;
+            case "5":
+                System.out.println("Thanks for using our system, Good bye And you see in the next Semester");
+                System.exit(0);
             default:
+                System.out.println("Invalid selected! Try again please.");
                 break;
         }
     };
