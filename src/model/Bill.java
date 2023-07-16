@@ -5,7 +5,6 @@ import model.person.Customer;
 import model.room.Room;
 public class Bill {
     Order order;
-    double total;
     public Bill(Order order) {
         this.order = order;
     }
