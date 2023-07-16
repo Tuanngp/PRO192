@@ -1,0 +1,5 @@
+KH001,Jack Hammer,0956812347,male,20/10/1996,jack_h@gmail.com,silver
+KH002,Jenny Blacky,0915677741,female,19/02/1999,jenBlack.@gmail.com,member
+KH003,Loren Orn,0911145733,male,11/12/2000,orn@gmail.com,gold
+KH004,Rose Pink,0978412356,female,30/01/2002,pink@gmail.com,diamond
+KH005,Roxy Ardex,0944556610,female,09/12/1990,roar@gmail.com,gold
