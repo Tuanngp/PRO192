@@ -37,7 +37,7 @@ public class OrderManager {
     public void displayAllOrder() {
         for (Order order : orders) {
             if (order.getRoom().getStatus()) {
-                System.out.println(order);
+                System.out.println(order.toString());
             }
         }
     }
@@ -98,7 +98,7 @@ public class OrderManager {
     }
     // -----------------------------------------------------------
 
-    public ArrayList<Order> readOrdersFromFile(String filename) throws IOException {
+    public void readOrdersFromFile(String filename) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -119,19 +119,18 @@ public class OrderManager {
                     } else {
                         customerGender = false;
                     }
-                    String customerDOBStr = Validation.checkValue(data[9], Validation.DATE_FORMAT);
-                    LocalDate customerDOB = null;
-                    if (customerDOBStr != null) {
-                        customerDOB = LocalDate.parse(customerDOBStr,
-                                DateTimeFormatter.ofPattern(Validation.DATE_FORMAT));
-                    }
+                    String dateOfBirthStr = data[9];
+                    LocalDate dateOfBirth = null;
+                            if (dateOfBirthStr != null) {
+                                dateOfBirth = LocalDate.parse(dateOfBirthStr, DateTimeFormatter.ofPattern(Validation.DATE_FORMAT));
+                               }
                     String customerEmail = Validation.checkValue(data[10], Validation.REGEX_EMAIL);
                     String customerRank = Validation.checkValue(data[11], Validation.REGEX_RANK);
                     int orderID = Integer.parseInt(data[12]);
                     int dayRent = Integer.parseInt(data[13]);
-
+                    
                     Customer customer = new Customer(customerID, customerName, customerPhone, customerAddress,
-                            customerGender, customerDOB, customerEmail, customerRank);
+                            customerGender, dateOfBirth, customerEmail, customerRank);
                     Room room;
                     if (roomType.equalsIgnoreCase("Single Room")) {
                         room = new SingleRoom(roomID);
@@ -140,7 +139,7 @@ public class OrderManager {
                     } else {
                         room = new Room(roomID, roomType, price, status);
                     }
-
+                    room.setStatus(status);
                     Order order = new Order(room, customer, orderID, dayRent);
                     orders.add(order);
                 } else {
@@ -151,7 +150,5 @@ public class OrderManager {
             System.out.println("Error occurred while reading orders from file: " + filename);
             e.printStackTrace();
         }
-
-        return orders;
     }
 }
