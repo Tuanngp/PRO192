@@ -59,8 +59,8 @@ public class CustomerManagement extends Menu<String>{
         Boolean gender = Boolean.parseBoolean(Validation.getString("Enter Customer Gender (true=male|false=female): ", Validation.REGEX_GENDER));
         LocalDate dateOfBirth = Validation.getDate("Enter customer's date of birth: ");
         String email = Validation.getString("Enter customer's email: ", Validation.REGEX_EMAIL);
-        int dayRent = Validation.getDayWork("(*)Enter the number of rental days: ");
-        Customer customer = new Customer(id, name, phone, address, gender, dateOfBirth, email, dayRent);
+        String rank = "member";
+        Customer customer = new Customer(id, name, phone, address, gender, dateOfBirth, email, rank);
         if(customerManager.addCustomer(customer)) { 
             System.out.println("Customer " + id + " has been added successfully.");
         } else {
@@ -75,8 +75,7 @@ public class CustomerManagement extends Menu<String>{
         Boolean gender = Boolean.parseBoolean(Validation.getString("Enter Customer Gender (true=male|false=female): ", Validation.REGEX_GENDER));
         LocalDate dateOfBirth = Validation.getDate("Enter customer's date of birth: ");
         String email = Validation.getString("Enter customer's email: ", Validation.REGEX_EMAIL);
-        int dayRent = Validation.getDayWork("(*)Enter the number of rental days: ");
-        Customer customer = new Customer(id, name, phone, address, gender, dateOfBirth, email, dayRent);
+        Customer customer = new Customer(id, name, phone, address, gender, dateOfBirth, email, "member");
         return customer;
     }
     
