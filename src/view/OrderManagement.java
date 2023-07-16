@@ -67,7 +67,7 @@ public class OrderManagement extends Menu<String> {
     }
     // --------------------------------------------------------------------------
     public void addOrder() {
-        String customerId = Validation.getString("(*) Enter customer's ID: ", Validation.REGEX_ID);
+        String customerId = Validation.getString("(*) Enter customer's ID: ", Validation.REGEX_ID_KH);
         Customer customer = customerManager.search(p -> p.getId().equalsIgnoreCase(customerId)).get(0);
 
         if (customer == null) {
@@ -145,7 +145,7 @@ public class OrderManagement extends Menu<String> {
                             result = orderManager.search(p -> p.getCustomer().getName().equalsIgnoreCase(customerName));
                             break;
                         case "3":
-                            String customerId = Validation.getString("Enter the customer ID: ", Validation.REGEX_ID);
+                            String customerId = Validation.getString("Enter the customer ID: ", Validation.REGEX_ID_KH);
                             result = orderManager.search(p -> p.getCustomer().getId().equalsIgnoreCase(customerId));
                             break;
                         case "4":
@@ -171,7 +171,7 @@ public class OrderManagement extends Menu<String> {
         
     // --------------------------------------------------------------------------
     public void deleteOrder() {
-        String id = Validation.getString("Enter customer's id to delete order:", Validation.REGEX_ID);
+        String id = Validation.getString("Enter customer's id to delete order:", Validation.REGEX_ID_KH);
         String confirmation = Validation.getString("Are you sure you want to delete order? (Yes/No): ", Validation.REGEX_CONFIRM);
         if (confirmation.equalsIgnoreCase("yes")) {
             Order order = orderManager.search(p -> p.getCustomer().getId().equalsIgnoreCase(id)).get(0);

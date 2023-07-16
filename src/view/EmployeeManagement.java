@@ -64,18 +64,17 @@ public class EmployeeManagement extends Menu<String> {
     }
 
     public void addEmployee() {
-        String id = Validation.getString("(*)Enter Employee's id: ", Validation.REGEX_ID);
+        String id = Validation.getString("(*)Enter Employee's id: ", Validation.REGEX_ID_NV);
         String name = Validation.getString("(*)Enter Employee's name: ", Validation.REGEX_NAME);
         String phone = Validation.getString("(*)Enter Employee's phone:", Validation.REGEX_NUMBER);
         String address = Validation.getString("Enter Employee Address: ", Validation.REGEX_ADDRESS);
         Boolean gender = Boolean.parseBoolean(
                 Validation.getString("Enter Employee Gender (true=male|false=female): ", Validation.REGEX_GENDER));
-        String dateOfBirthStr = Validation.getString("Enter Employee's date of birth:", Validation.DATE_FORMAT);
-        LocalDate dateOfBirth = LocalDate.parse(dateOfBirthStr, DateTimeFormatter.ofPattern(Validation.DATE_FORMAT));
+        LocalDate dateOfBirth = Validation.getLocalDate(Validation.getDate("Enter customer's date of birth: "));
         String email = Validation.getString("Enter Employee's email: ", Validation.REGEX_EMAIL);
         int dayWork = Validation.getDayWork("Enter Employee's DayWork:");
         String role = Validation.getString("Enter Employee's Role:", Validation.REGEX_ROLE);
-        Employee employee = new Employee(id, name, phone, address, gender, dateOfBirth, email, dayWork, role);
+        Employee employee = new Employee("NV"+id, name, phone, address, gender, dateOfBirth, email, dayWork, role);
         if (employeeManager.addEmployee(employee)) {
             System.out.println("Employee " + id + " has been added successfully.");
         } else {
@@ -92,7 +91,7 @@ public class EmployeeManagement extends Menu<String> {
                 ArrayList<Employee> rs = null;
                 switch (selected) {
                     case "1":
-                        String val = Validation.getString("Enter ID's Employee you want to search", Validation.REGEX_ID);
+                        String val = Validation.getString("Enter ID's Employee you want to search", Validation.REGEX_ID_NV);
                         rs = employeeManager.search(p -> p.getId().equalsIgnoreCase(val));
                         break;
                     case "2":
@@ -128,10 +127,10 @@ public class EmployeeManagement extends Menu<String> {
         System.out.println("Updating Employee");
         System.out.println("Input information you want to update (Enter to pass): ");
         // get Employee to Update
-        String id = Validation.getString("Enter ID's Employee you want to update: ", Validation.REGEX_ID);
+        String id = Validation.getString("Enter ID's Employee you want to update: ", Validation.REGEX_ID_NV);
         Employee employee = employeeManager.search(p -> p.getId().equalsIgnoreCase(id)).get(0);
         // Enter new information
-        String idNew = Validation.getString("Enter new ID Employee: ", Validation.REGEX_ID);
+        String idNew = Validation.getString("Enter new ID Employee: ", Validation.REGEX_ID_NV_UPDATE);
         String name = Validation.getString("Enter new name's Employee: ", Validation.REGEX_NAME);
         String phone = Validation.getString("Enter new phone's Employee: ", Validation.REGEX_NUMBER);
         LocalDate dateOfBirthStr = Validation.getLocalDate(Validation.getDate("Enter new date of birth(dd/MM/yyyy): "));
@@ -158,7 +157,7 @@ public class EmployeeManagement extends Menu<String> {
             public void execute(String selected) {
                 switch (selected) {
                     case "1":
-                        String id = Validation.getString("Enter Employee ID: ", Validation.REGEX_ID);
+                        String id = Validation.getString("Enter Employee ID: ", Validation.REGEX_ID_NV);
                         if (employeeManager.deleteEmployee(id, null, null, null)) {
                             System.out.println("Employee " + id + " has been deteted successfully.");
                         } else {
