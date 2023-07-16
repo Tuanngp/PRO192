@@ -5,6 +5,13 @@ import model.person.Customer;
 import model.room.Room;
 
 public class Order {
+    public Order(Room room, Customer customer, int orderID, int dayRent) {
+        this.room = room;
+        this.customer = customer;
+        this.orderID = orderID;
+        this.dayRent = dayRent;
+    }
+
     private Room room;
     private Customer customer;
     private int orderID;
@@ -13,10 +20,6 @@ public class Order {
     public Order() {
     }
 
-    public Order(Customer customer, Room room) {
-        this.room = room;
-        this.customer = customer;
-    }
 
     public Room getRoom() {
         return room;

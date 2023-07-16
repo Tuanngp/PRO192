@@ -55,10 +55,12 @@ public class OrderManagement extends Menu <String> {
         if(customer == null) {
             Customer customer1 = CustomerManagement.getCustomer(id);
             Room room = roomManagement.getRoom();
-            order = new Order(customer1, room);
+            int dayRent = Integer.parseInt(Validation.getString("Enter the number of day rent: ", Validation.REGEX_NUMBER));
+            order = new Order(room, customer,0, dayRent);
         } else {
             Room room = roomManagement.getRoom();
-            order = new Order(customer, room);
+            int dayRent = Integer.parseInt(Validation.getString("Enter the number of day rent: ", Validation.REGEX_NUMBER));
+            order = new Order(room, customer,0, dayRent);
             // Room 
         }
         if(orderManager.addOrder(order)) {
