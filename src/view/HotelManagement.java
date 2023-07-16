@@ -7,6 +7,9 @@ public class HotelManagement extends Menu<String>{
     private CustomerManagement customerManagement = new CustomerManagement();
     private RoomManagement roomManagement = new RoomManagement();
     private OrderManagement orderManagement = new OrderManagement();
+    public HotelManagement(){
+        super("-------------/Hotel Management System/----------------",hotelMenu);
+    }
     @Override
     public void execute(String selected) {
         switch(selected) {
