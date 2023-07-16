@@ -15,11 +15,12 @@ import model.room.Room;
 import model.room.SingleRoom;
 
 public class OrderManager {
-    private ArrayList<Order> orders = new ArrayList<>();
+    private ArrayList<Order> orders;
 
     // -------------------------------------------------
     public OrderManager() {
-
+        readOrdersFromFile();
+        orders = new ArrayList<>();
     }
 
     // -----------------------------------------------------------
@@ -36,7 +37,6 @@ public class OrderManager {
     public boolean displayAllOrder() {
         for (Order order : orders) {
             if (order.getRoom().getStatus()) {
-                readOrdersFromFile();
                 return true;
             }
         }
