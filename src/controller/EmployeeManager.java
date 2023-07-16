@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import model.person.Employee;
-import model.person.Employee;
 
 public class EmployeeManager {
     ArrayList<Employee> employees;
