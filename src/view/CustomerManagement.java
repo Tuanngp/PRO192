@@ -63,10 +63,9 @@ public class CustomerManagement extends Menu<String>{
         String phone = Validation.getString("(*)Enter customer's phone:", Validation.REGEX_NUMBER);
         String address = Validation.getString("Enter Customer Address: ", Validation.REGEX_ADDRESS);
         Boolean gender = Boolean.parseBoolean(Validation.getString("Enter Customer Gender (true=male|false=female): ", Validation.REGEX_GENDER));
-        LocalDate dateOfBirth = Validation.getDate(Validation.getString("Enter customer's date of birth: "));
+        LocalDate dateOfBirth = Validation.getLocalDate(Validation.getDate("Enter customer's date of birth: "));
         String email = Validation.getString("Enter customer's email: ", Validation.REGEX_EMAIL);
-        String rank = "member";
-        Customer customer = new Customer(id, name, phone, address, gender, dateOfBirth, email, rank);
+        Customer customer = new Customer(id, name, phone, address, gender, dateOfBirth, email, "Member");
         if(customerManager.addCustomer(customer)) { 
             System.out.println("Customer " + id + " has been added successfully.");
         } else {
@@ -79,7 +78,7 @@ public class CustomerManagement extends Menu<String>{
         String phone = Validation.getString("(*)Enter customer's phone:", Validation.REGEX_NUMBER);
         String address = Validation.getString("Enter Customer Address: ", Validation.REGEX_ADDRESS);
         Boolean gender = Boolean.parseBoolean(Validation.getString("Enter Customer Gender (true=male|false=female): ", Validation.REGEX_GENDER));
-        LocalDate dateOfBirth = Validation.getDate("Enter customer's date of birth: ");
+        LocalDate dateOfBirth = Validation.getLocalDate(Validation.getDate("Enter customer's date of birth: "));
         String email = Validation.getString("Enter customer's email: ", Validation.REGEX_EMAIL);
         Customer customer = new Customer(id, name, phone, address, gender, dateOfBirth, email, "member");
         return customer;
@@ -135,7 +134,7 @@ public class CustomerManagement extends Menu<String>{
         String idNew = Validation.getString("Enter new ID customer: ", Validation.REGEX_ID);
         String name = Validation.getString("Enter new name's customer: ",Validation.REGEX_NAME);
         String phone = Validation.getString("Enter new phone's customer: ", Validation.REGEX_NUMBER);
-        LocalDate dateOfBirthStr = Validation.getDate("Enter new date of birth(dd/MM/yyyy): ");
+        LocalDate dateOfBirthStr = Validation.getLocalDate(Validation.getDate("Enter new date of birth(dd/MM/yyyy): "));
         String address = Validation.getString("Enter new address: ",Validation.REGEX_ADDRESS);
         String genderStr = Validation.getString("Enter new gender((true = male;false = female)",Validation.REGEX_GENDER);
         String email = Validation.getString("Enter new email: ", Validation.REGEX_EMAIL);

@@ -63,7 +63,7 @@ public class Validation {
         }
     }
     
-    public static LocalDate getDate(String dateStr) {
+    public static LocalDate getLocalDate(String dateStr) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
         LocalDate date;
         try {
@@ -74,19 +74,20 @@ public class Validation {
         return date;
     }
     // --------------------------------------------------------
-//    public static String getDate(String prompt) {
-//        String dateStr;
-//        do {
-//            System.out.print(prompt);
-//            dateStr = sc.nextLine();
-//            if(dateStr.equals(null)) return null;
-//
-//            if(!validDay(dateStr)) {
-//                System.out.println("[ERROR], Try again please.");
-//            }
-//        } while (!validDay(dateStr));
-//        return dateStr;
-//    }
+   public static String getDate(String prompt) {
+       String dateStr;
+       Scanner sc = new Scanner(System.in);
+       do {
+           System.out.print(prompt);
+           dateStr = sc.nextLine();
+           if(dateStr.equals(null)) return null;
+
+           if(!validDay(dateStr)) {
+               System.out.println("[ERROR], Try again please.");
+           }
+       } while (!validDay(dateStr));
+       return dateStr;
+   }
     //---------------------------------------------------------
     public static int getDayWork(String pr){
         Scanner sc = new Scanner(System.in);

@@ -134,7 +134,7 @@ public class EmployeeManagement extends Menu<String> {
         String idNew = Validation.getString("Enter new ID Employee: ", Validation.REGEX_ID);
         String name = Validation.getString("Enter new name's Employee: ", Validation.REGEX_NAME);
         String phone = Validation.getString("Enter new phone's Employee: ", Validation.REGEX_NUMBER);
-        LocalDate dateOfBirthStr = Validation.getDate("Enter new date of birth(dd/MM/yyyy): ");
+        LocalDate dateOfBirthStr = Validation.getLocalDate(Validation.getDate("Enter new date of birth(dd/MM/yyyy): "));
         String address = Validation.getString("Enter new address: ", Validation.REGEX_ADDRESS);
         String genderStr = Validation.getString("Enter new gender((true = male;false = female)",
                 Validation.REGEX_GENDER);
