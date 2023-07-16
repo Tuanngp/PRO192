@@ -106,7 +106,7 @@ public class EmployeeManagement extends Menu<String> {
                         break;
                 }
                 if (rs.isEmpty()) {
-                    System.out.println("Empty list! No search can be perfomred.");
+                    System.err.println("Empty list! No search can be perfomred.");
                 } else {
                     System.out.println(rs);
                 }

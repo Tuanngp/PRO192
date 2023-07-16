@@ -49,8 +49,6 @@ public class Employee extends Person {
     @Override
     public String toString() {
         String genderString = isGender() ? "male" : "female";
-        return "|" + getId() + "\t" + getName() + "\t" + getPhone() + "\t" + genderString + "\t"
-                + getDateOfBirth() + "\t" + getEmail() + "\t"
-                + dayWork + "\t" + role + "\t" + salary + "|";
+        return super.toString() + String.format(" %-4d %-8s %-12f", dayWork, role, salary);
     }
 }
