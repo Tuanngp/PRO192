@@ -27,11 +27,10 @@ public abstract class Menu<T> {
     }
 //    ------------------------------------------------------------------------------------    
     public String getSelected() {
-        try (Scanner sc = new Scanner(System.in)) {
-            System.out.print("Enter selection: ");
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter selection: ");
             return sc.nextLine();
         }
-    }
 //    ------------------------------------------------------------------------------------    
     public abstract void execute(String selected);
 //    ------------------------------------------------------------------------------------

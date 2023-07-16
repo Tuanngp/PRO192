@@ -8,7 +8,7 @@ public class HotelManagement extends Menu<String>{
     private RoomManagement roomManagement = new RoomManagement();
     private OrderManagement orderManagement = new OrderManagement();
     public HotelManagement(){
-        super("-------------/Hotel Management System/----------------",hotelMenu);
+        super("Hotel Management System",hotelMenu);
     }
     @Override
     public void execute(String selected) {
@@ -21,6 +21,7 @@ public class HotelManagement extends Menu<String>{
                 break;
             case "3":
                 orderManagement.run();
+                break;
             case "4":
                 break;
             default:
