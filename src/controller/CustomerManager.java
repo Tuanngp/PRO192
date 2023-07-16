@@ -91,6 +91,11 @@ public class CustomerManager {
 //    ------------------------------------------------------------------------------
     public boolean updateCustomer(Customer cus, String id, String name, String phone, String address, String genderStr, LocalDate dateOfBirth, String email, String rank) {
         boolean updated = false;
+
+        if(!id.trim().isEmpty()) {
+            cus.setId(id);
+            updated = true;
+        }
         if (!name.trim().isEmpty()) {
             cus.setName(name);
             updated = true;
@@ -114,6 +119,10 @@ public class CustomerManager {
         }
         if (!email.trim().isEmpty()) {
             cus.setEmail(email);
+            updated = true;
+        }
+        if(!rank.trim().isEmpty()) {
+            cus.setRank(rank);
             updated = true;
         }
         return updated;

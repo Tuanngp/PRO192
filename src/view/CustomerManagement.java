@@ -93,7 +93,8 @@ public class CustomerManagement extends Menu<String>{
                 switch(selected){
                     case "1":
                         String val = Validation.getString("Enter ID's Customer you want to search: ", Validation.REGEX_ID);
-                        rs = customerManager.search(p -> p.getId().equalsIgnoreCase(val));
+                        String id = "KH" + val;
+                        rs = customerManager.search(p -> p.getId().equalsIgnoreCase(id));
                         break;
                     case "2":
                         val = Validation.getString("Enter Name's Customer you want to search: ", Validation.REGEX_NAME);
@@ -105,7 +106,7 @@ public class CustomerManagement extends Menu<String>{
                         break;
                     case "4":
                         val = Validation.getString("Enter Email's Customer you want to search: ");
-                        rs = customerManager.search(p->p.getEmail().equals(val));
+                        rs = customerManager.search(p->p.getEmail().equalsIgnoreCase(val));
                         break;
                     case "5":
                         System.out.println("Exit Searching Menu!");
@@ -128,10 +129,18 @@ public class CustomerManagement extends Menu<String>{
         System.out.println("Updating Customer");
         System.out.println("Input information you want to update (Enter to pass): ");
         // get Customer to Update 
-        String id = Validation.getString("Enter ID's Customer you want to update: ", Validation.REGEX_ID);
-        Customer customer = customerManager.search(p -> p.getId().equalsIgnoreCase(id)).get(0);
+        Customer customer = null;
+        while(customer==null) {
+            try {
+                String id = Validation.getString("Enter ID's Customer you want to update: ", Validation.REGEX_ID);
+                customer = customerManager.search(p -> p.getId().equalsIgnoreCase("KH"+id)).get(0);
+            } catch (Exception e) {
+                customer = null;
+            }
+        }
+
         // Enter new information
-        String idNew = Validation.getString("Enter new ID customer: ", Validation.REGEX_ID);
+        String idNew = "KH" + Validation.getString("Enter new ID customer: ", Validation.REGEX_ID);
         String name = Validation.getString("Enter new name's customer: ",Validation.REGEX_NAME);
         String phone = Validation.getString("Enter new phone's customer: ", Validation.REGEX_NUMBER);
         LocalDate dateOfBirthStr = Validation.getLocalDate(Validation.getDate("Enter new date of birth(dd/MM/yyyy): "));
