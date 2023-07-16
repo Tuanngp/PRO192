@@ -1,6 +1,5 @@
 package model;
 
-import model.Order;
 import model.person.Customer;
 import model.room.Room;
 public class Bill {

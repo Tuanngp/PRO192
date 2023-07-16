@@ -1,6 +1,5 @@
 package model;
 
-import java.time.LocalDate;
 
 import model.person.Customer;
 import model.room.Room;

@@ -1,8 +1,6 @@
 package view;
 
 import java.util.ArrayList;
-import java.util.Scanner;
-
 import controller.CustomerManager;
 import controller.OrderManager;
 import controller.RoomManager;
@@ -14,7 +12,6 @@ public class OrderManagement extends Menu <String> {
     static String[] menu = {"Display All Room Order","Add Room Order", "Update Order's Customer.",
                             "Search Room Order","Release Room",
                             "Sort room order by day rented","Exit."};
-    private Scanner sc = new Scanner(System.in);
     private OrderManager orderManager = new OrderManager();
     private CustomerManager customerManager = new CustomerManager();
     private RoomManagement roomManagement = new RoomManagement();
@@ -110,6 +107,7 @@ public class OrderManagement extends Menu <String> {
                 }
             }
         };
+        menuUpdate.run();
     }
     //--------------------------------------------------------------------------
     public void searchOrder(){

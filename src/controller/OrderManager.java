@@ -3,19 +3,13 @@ package controller;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Scanner;
 import java.util.function.Predicate;
 import model.Order;
-import model.Bill;
-import model.person.Customer;
 import model.room.Room;
-import view.RoomManagement;
 
 public class OrderManager {
     private ArrayList<Order> orders = new ArrayList<>();
-    private Scanner sc = new Scanner(System.in);
-    private RoomManager roomManager = new RoomManager();
-    private RoomManagement roomManagement = new RoomManagement();
+
     // -------------------------------------------------
     public OrderManager() {
         

@@ -9,7 +9,10 @@ import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import model.person.Customer;
+<<<<<<< Updated upstream
 import view.Validation;
+=======
+>>>>>>> Stashed changes
 
 public class CustomerManager {
     ArrayList<Customer> customers;
@@ -75,7 +78,7 @@ public class CustomerManager {
         return customerSearched;
     }
 //    ------------------------------------------------------------------------------
-    public boolean updateCustomer(Customer cus, String id, String name, String phone, String address, String genderStr, LocalDate dateOfBirth, String email, int dayRent) {
+    public boolean updateCustomer(Customer cus, String id, String name, String phone, String address, String genderStr, LocalDate dateOfBirth, String email, String rank) {
         boolean updated = false;
         if (!name.trim().isEmpty()) {
             cus.setName(name);

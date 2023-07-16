@@ -132,9 +132,9 @@ public class CustomerManagement extends Menu<String>{
         String address = Validation.getString("Enter new address: ",Validation.REGEX_ADDRESS);
         String genderStr = Validation.getString("Enter new gender((true = male;false = female)",Validation.REGEX_GENDER);
         String email = Validation.getString("Enter new email: ", Validation.REGEX_EMAIL);
-        int dayRent = Validation.getDayWork("Enter new Day Rent: ");
+        String rank = Validation.getString("Enter new Rank: ");
         // check Update 
-        if(customerManager.updateCustomer(customer, idNew, name, phone, address, genderStr, dateOfBirthStr, email, dayRent)) {
+        if(customerManager.updateCustomer(customer, idNew, name, phone, address, genderStr, dateOfBirthStr, email, rank)) {
             System.out.println("Customer " + customer.getId() + " has been updated successfully.");
         } else {
             System.out.println("[ERROR] Unable to update customer.");

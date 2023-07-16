@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Validation {
@@ -21,7 +20,6 @@ public class Validation {
     public static final String DATE_FORMAT= "dd/MM/yyyy";
     public static final String ROOM_TYPE= "(?i)single room|couple room";
     public static final String REGEX_ROLE = "(?i)staff|manager+";
-    private static final Scanner sc = new Scanner(System.in);
     private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
 
     //-----------------------------------------------------------------------
