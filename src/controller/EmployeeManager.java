@@ -117,8 +117,7 @@ public class EmployeeManager {
         while ((line = br.readLine()) != null) {
             String[] data = line.split(",");
             if (data.length == 9) {
-                String id = Validation.checkValue(data[0].substring(2), Validation.REGEX_ID_NV);
-                String idFormat = "NV"+id;
+                String id = Validation.checkValue(data[0], Validation.REGEX_ID_NV);
                 String name = Validation.checkValue(data[1], Validation.REGEX_NAME);
                 String phone = Validation.checkValue(data[2], Validation.REGEX_NUMBER);
                 String address = Validation.checkValue(data[3], Validation.REGEX_ADDRESS);
@@ -138,7 +137,7 @@ public class EmployeeManager {
                 String dayWorkStr = Validation.checkValue(data[7], Validation.REGEX_DAYWORK);
                 int dayWork = Integer.parseInt(dayWorkStr);
                 String role = Validation.checkValue(data[8], Validation.REGEX_ROLE);
-                employees.add(new Employee(idFormat, name, phone, address, gender, dateOfBirth, email, dayWork, role));
+                employees.add(new Employee(id, name, phone, address, gender, dateOfBirth, email, dayWork, role));
             } else {
                 System.out.println("Invalid file data");
             }
