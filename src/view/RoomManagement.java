@@ -247,7 +247,7 @@ public class RoomManagement extends Menu<String>{
 
     public Room getRoom() {
         displayRoom();
-        String roomId = Validation.getString("Enter Room ID: ", Validation.ROOM_TYPE);
+        String roomId = Validation.getString("Enter Room ID: ", Validation.REGEX_NUMBER);
         Room room = roomManager.searchRoom(p -> p.getRoomID().equals(roomId)).get(0);
         if(roomManager.orderRoom(room)) {
             System.out.println("Order room " + roomId + " has been successfully.");
