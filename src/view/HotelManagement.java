@@ -1,7 +1,5 @@
 package view;
 
-import model.room.Room;
-
 public class HotelManagement extends Menu<String>{
     static String[] hotelMenu = {"Customer Management", "Room Management", "Order Management", "Menu"};
     private CustomerManagement customerManagement = new CustomerManagement();
