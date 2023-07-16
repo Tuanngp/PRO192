@@ -28,7 +28,7 @@ public class CustomerManager {
         while ((line = br.readLine()) != null) {
             String[] data = line.split(",");
             if (data.length == 8) {
-                String id = Validation.checkValue(data[0].substring(2), Validation.REGEX_ID);
+                String id = Validation.checkValue(data[0].substring(2), Validation.REGEX_ID_KH_UPDATE);
                 String idFormat = "KH"+id;
                 String name = Validation.checkValue(data[1], Validation.REGEX_NAME);
                 String phone = Validation.checkValue(data[2], Validation.REGEX_NUMBER);

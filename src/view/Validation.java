@@ -8,8 +8,10 @@ import java.util.Scanner;
 
 public class Validation {
     // --------------------------------------------------------------------
-    public static final String REGEX_ID = "\\d+";
-    public static final String REGEX_ID_UPDATE = "\\d*";
+    public static final String REGEX_ID_KH = "^KH\\d+$";
+    public static final String REGEX_ID_KH_UPDATE = "[KH\\d]*";
+    public static final String REGEX_ID_NV = "NV\\d+";
+    public static final String REGEX_ID_NV_UPDATE = "[NV\\d]*";
     public static final String REGEX_NAME = "^[a-zA-Z ]*$";
     public static final String REGEX_NUMBER = "\\d*";
     public static final String REGEX_ADDRESS = "^[A-Za-z0-9 ]*$";
