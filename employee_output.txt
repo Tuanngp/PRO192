@@ -1,0 +1,4 @@
+001      June Karen       0915789453   93 Phu Tho       female   29/03/2005   sixjune@gmail.com      28   staff    0.000000    
+002      Max Void         0911115425   154 Hexa St      male     30/05/1994   void@gmail.com         30   manager  0.000000    
+003      Lyly Pham        0912345610   200 RadoCity St  female   15/12/2000   lyly1@gmail.com        29   staff    0.000000    
+004      Ben White        0935684712   123 Paris St     male     20/02/1999   bw123@gmail.com        29   staff    0.000000    

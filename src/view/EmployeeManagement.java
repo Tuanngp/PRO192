@@ -4,15 +4,23 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import controller.EmployeeManager;
+import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import model.person.Employee;
 
 public class EmployeeManagement extends Menu<String> {
     static String[] EmployeeMenu = { "Display All Employee", "Add Employee", "Search Employee", "Update Employee",
             "Delete Employee", "Exit" };
-    EmployeeManager EmployeeManager = new EmployeeManager();
+    EmployeeManager employeeManager = new EmployeeManager();
 
     public EmployeeManagement() {
         super("Employee Management System", EmployeeMenu);
+        try{
+        employeeManager.loadEmployeesFromFile("employee.txt");
+        }
+        catch(IOException e){
+            e.printStackTrace();;
+        }
     }
 
     @Override
@@ -34,8 +42,9 @@ public class EmployeeManagement extends Menu<String> {
                 deleteEmployee();
                 break;
             case "6":
+                employeeManager.saveFileAndExit("employee_output.txt");
                 System.out.println("Exit Employee Management System!");
-                break;
+                return;
             default:
                 System.out.println("[ERROR] Invalid input! Please try again.");
                 break;
@@ -44,14 +53,14 @@ public class EmployeeManagement extends Menu<String> {
 
     public void displayEmployees() {
         System.out.println("List all Employees: ");
-        EmployeeManager.displayEmployees();
-        System.out.println("Total: " + EmployeeManager.getListEmployees().size() + " Employees");
+        employeeManager.displayEmployees();
+        System.out.println("Total: " + employeeManager.getListEmployees().size() + " Employees");
     }
 
     public void displayEmployees(ArrayList<Employee> Employees) {
         System.out.println("List all Employees: ");
-        EmployeeManager.displayEmployees(Employees);
-        System.out.println("Total: " + EmployeeManager.getListEmployees().size() + " Employees");
+        employeeManager.displayEmployees(Employees);
+        System.out.println("Total: " + employeeManager.getListEmployees().size() + " Employees");
     }
 
     public void addEmployee() {
@@ -61,13 +70,13 @@ public class EmployeeManagement extends Menu<String> {
         String address = Validation.getString("Enter Employee Address: ", Validation.REGEX_ADDRESS);
         Boolean gender = Boolean.parseBoolean(
                 Validation.getString("Enter Employee Gender (true=male|false=female): ", Validation.REGEX_GENDER));
-        LocalDate dateOfBirth = Validation.getDate("Enter Employee's date of birth: ");
+        String dateOfBirthStr = Validation.getString("Enter Employee's date of birth:", Validation.DATE_FORMAT);
+        LocalDate dateOfBirth = LocalDate.parse(dateOfBirthStr, DateTimeFormatter.ofPattern(Validation.DATE_FORMAT));
         String email = Validation.getString("Enter Employee's email: ", Validation.REGEX_EMAIL);
         int dayWork = Validation.getDayWork("Enter Employee's DayWork:");
         String role = Validation.getString("Enter Employee's Role:", Validation.REGEX_ROLE);
-        Float salary = Validation.getFloat("Enter Employee's Salary:");
-        Employee employee = new Employee(id, name, phone, address, gender, dateOfBirth, email, dayWork, role, salary);
-        if (EmployeeManager.addEmployee(employee)) {
+        Employee employee = new Employee(id, name, phone, address, gender, dateOfBirth, email, dayWork, role);
+        if (employeeManager.addEmployee(employee)) {
             System.out.println("Employee " + id + " has been added successfully.");
         } else {
             System.out.println("[Error] Unable to add Employee.");
@@ -84,19 +93,19 @@ public class EmployeeManagement extends Menu<String> {
                 switch (selected) {
                     case "1":
                         String val = Validation.getString("Enter ID's Employee you want to search", Validation.REGEX_ID);
-                        rs = EmployeeManager.search(p -> p.getId().equalsIgnoreCase(val));
+                        rs = employeeManager.search(p -> p.getId().equalsIgnoreCase(val));
                         break;
                     case "2":
                         val = Validation.getString("Enter Name's Employee you want to search", Validation.REGEX_NAME);
-                        rs = EmployeeManager.search(p -> p.getName().equalsIgnoreCase(val));
+                        rs = employeeManager.search(p -> p.getName().equalsIgnoreCase(val));
                         break;
                     case "3":
                         val = Validation.getString("Enter Phone's Employee you want to search");
-                        rs = EmployeeManager.search(p -> p.getPhone().equals(val));
+                        rs = employeeManager.search(p -> p.getPhone().equals(val));
                         break;
                     case "4":
                         val = Validation.getString("Enter Email's Employee you want to search");
-                        rs = EmployeeManager.search(p -> p.getEmail().equalsIgnoreCase(val));
+                        rs = employeeManager.search(p -> p.getEmail().equalsIgnoreCase(val));
                         break;
                     case "5":
                         System.out.println("Exit Searching Menu!");
@@ -120,7 +129,7 @@ public class EmployeeManagement extends Menu<String> {
         System.out.println("Input information you want to update (Enter to pass): ");
         // get Employee to Update
         String id = Validation.getString("Enter ID's Employee you want to update: ", Validation.REGEX_ID);
-        Employee Employee = EmployeeManager.search(p -> p.getId().equalsIgnoreCase(id)).get(0);
+        Employee employee = employeeManager.search(p -> p.getId().equalsIgnoreCase(id)).get(0);
         // Enter new information
         String idNew = Validation.getString("Enter new ID Employee: ", Validation.REGEX_ID);
         String name = Validation.getString("Enter new name's Employee: ", Validation.REGEX_NAME);
@@ -134,9 +143,9 @@ public class EmployeeManagement extends Menu<String> {
         String role = Validation.getString("Enter Employee's Role:", Validation.REGEX_ROLE);
         Float salary = Validation.getFloat("Enter Employee's Salary:");
         // check Update
-        if (EmployeeManager.updateEmployee(Employee, idNew, name, phone, address, genderStr, dateOfBirthStr, email,
-                dayWork, role, salary)) {
-            System.out.println("Employee " + Employee.getId() + " has been updated successfully.");
+        if (employeeManager.updateEmployee(employee, idNew, name, phone, address, genderStr, dateOfBirthStr, email,
+                dayWork, role)) {
+            System.out.println("Employee " + employee.getId() + " has been updated successfully.");
         } else {
             System.out.println("[ERROR] Unable to update Employee.");
         }
@@ -151,7 +160,7 @@ public class EmployeeManagement extends Menu<String> {
                 switch (selected) {
                     case "1":
                         String id = Validation.getString("Enter Employee ID: ", Validation.REGEX_ID);
-                        if (EmployeeManager.deleteEmployee(id, null, null, null)) {
+                        if (employeeManager.deleteEmployee(id, null, null, null)) {
                             System.out.println("Employee " + id + " has been deteted successfully.");
                         } else {
                             System.out.println("[ERROR] Unable to delete Employee.");
@@ -159,7 +168,7 @@ public class EmployeeManagement extends Menu<String> {
                         break;
                     case "2":
                         String name = Validation.getString("Enter Employee Name: ", Validation.REGEX_NAME);
-                        if (EmployeeManager.deleteEmployee(null, name, null, null)) {
+                        if (employeeManager.deleteEmployee(null, name, null, null)) {
                             System.out.println("Employee " + name + " has been deteted successfully.");
                         } else {
                             System.out.println("[ERROR] Unable to delete Employee.");
@@ -167,7 +176,7 @@ public class EmployeeManagement extends Menu<String> {
                         break;
                     case "3":
                         String phone = Validation.getString("Enter Employee Phone: ", Validation.REGEX_NUMBER);
-                        if (EmployeeManager.deleteEmployee(null, null, phone, null)) {
+                        if (employeeManager.deleteEmployee(null, null, phone, null)) {
                             System.out.println(
                                     "Employee have Phone number: " + phone + " has been deteted successfully.");
                         } else {
@@ -176,7 +185,7 @@ public class EmployeeManagement extends Menu<String> {
                         break;
                     case "4":
                         String email = Validation.getString("Enter Employee Email: ", Validation.REGEX_EMAIL);
-                        if (EmployeeManager.deleteEmployee(null, null, null, email)) {
+                        if (employeeManager.deleteEmployee(null, null, null, email)) {
                             System.out.println("Employee have email: " + email + " has been deteted successfully.");
                         } else {
                             System.out.println("[ERROR] Unable to delete Employee.");
