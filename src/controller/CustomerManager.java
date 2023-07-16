@@ -39,8 +39,12 @@ public class CustomerManager {
                 LocalDate dateOfBirth = LocalDate.parse(dateOfBirthStr, DateTimeFormatter.ofPattern(Validation.DATE_FORMAT));
                 String email = Validation.checkValue(data[6], Validation.REGEX_EMAIL);
                 String rank = Validation.checkValue(data[7],Validation.REGEX_RANK);
+                customers.add(new Customer(id, name, phone, address, gender, dateOfBirth, email, rank));
                 }
+            else {
+                System.out.println("Invalid file data");
             }
+          }
         }catch (Exception e) {
         System.out.println("Error occurred while loading customers from file: " + filename);
         e.printStackTrace();
