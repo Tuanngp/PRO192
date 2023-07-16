@@ -90,7 +90,7 @@ public class OrderManagement extends Menu <String> {
                 switch(selected) {
                     case "1":
                         String roomID = Validation.getString("Enter new Room ID: ", Validation.REGEX_NUMBER);
-                        // Room newRoom = roomManager.searchRoom(p -> p.getRoomID().equals(roomID)).get(0);
+                        Room newRoom = roomManager.searchRoom(p -> p.getRoomID().equals(roomID)).get(0);
                         if(orderManager.updateOrder(order, newRoom, -1)) {
                             System.out.println("Update successfull.");
                         } else {
@@ -98,14 +98,22 @@ public class OrderManagement extends Menu <String> {
                         }
                         break;
                     case "2":
-                        int dayRent = Integer.parseInt(Validation.getString("Enter new day rent: ", roomID))
+                        int dayRent = Integer.parseInt(Validation.getString("Enter new day rent: ", Validation.REGEX_NUMBER));
+                        if(orderManager.updateOrder(order, null, dayRent)) {
+                            System.out.println("Update successfull.");
+                        } else {
+                            System.out.println("Update falure.");
+                        }
+                        break;
+                    case "3":
+                        System.out.println("Exit updating order.");
                 }
             }
         };
     }
     //--------------------------------------------------------------------------
     public void searchOrder(){
-        String[] mSearch ={"By Customer ID","By Customer Name","Type Of Room", "Exit."};
+        String[] mSearch ={"By Order ID","By Customer Name", "By Customer ID", "Type Of Room", "Exit."};
         Menu m = new Menu("Order Searching System!!!",mSearch) {
             @Override
             public void execute(final String n){
@@ -116,10 +124,14 @@ public class OrderManagement extends Menu <String> {
                         rs = orderManager.search(p->p.getCustomer().getId().equalsIgnoreCase(val));
                         break;
                     case "2":
-                        val = Validation.getString("Enter name you want to search", Validation.REGEX_NAME);
+                        val = Validation.getString("Enter name's customer you want to search", Validation.REGEX_NAME);
                         rs = orderManager.search(p->p.getCustomer().getName().equalsIgnoreCase(val));
                         break;
                     case "3":
+                        val = Validation.getString("Enter ID's customer you want to search", Validation.REGEX_NAME);
+                        rs = orderManager.search(p->p.getCustomer().getId().equalsIgnoreCase(val));
+                        break;
+                    case "4":
                         val = Validation.getString("Enter type of room you want to search",Validation.ROOM_TYPE);
                         rs = orderManager.search(p->p.getRoom().getRoomType().equalsIgnoreCase(val));
                         break;
@@ -137,19 +149,18 @@ public class OrderManagement extends Menu <String> {
         String id = Validation.getString("Enter customer's id to delete order:", Validation.REGEX_ID);
         String confirmation = Validation.getString("Are you sure you want to delete order? (Yes/No): ", Validation.REGEX_CONFIRM);
 
-        Order order = new Order();
+        Order order = null;
         if (confirmation.equalsIgnoreCase("yes")) {
             if(orderManager.deleteOrder(order)) {
-                System.out.println("Order ");
+                System.out.println("Order " + id + " has been deleted successfully.");
+            } else {
+                System.out.println("Order " + id + " doesn't exist!");
             }
         }
-        //     System.out.println("Order delected successfully!!");
-        // else 
-        //     System.out.println("Customer " + id +" doesn't exitst!");
     }
     //--------------------------------------------------------------------------
     public void sortOrderByDayRent() {
-        System.out.println("List customer after sort: ");
+        System.out.println("List order after sort: ");
         orderManager.sortOrder();
         displayAllOrder();
     } 
