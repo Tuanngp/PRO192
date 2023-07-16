@@ -101,6 +101,16 @@ public class Person {
         this.dateOfBirth = dateOfBirth;
     }
 
+    public String setFormat(String str) {
+        String[] word = str.split("\\s+");
+        String result="";
+        for(int i=0; i<word.length; i++) {
+            word[i] = word[i].substring(0, 1).toUpperCase() + word[i].substring(1).toLowerCase();
+            result += (word[i] + " ");
+        }
+        return result;
+    }
+    
     @Override
     public String toString() {
         String genderString = this.gender ? "male" : "female";
