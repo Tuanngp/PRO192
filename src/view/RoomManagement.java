@@ -108,7 +108,7 @@ public class RoomManagement extends Menu<String>{
                 System.out.println("Room " + roomIdNew + " has been existed! Try again please.");
             }
         } while(roomManager.isDupplication(roomIdNew));
-        String roomType = Validation.getString("Enter Room Type: ", Validation.REGEX_NAME);
+        String roomType = Validation.getString("Enter Room Type: ", Validation.ROOM_TYPE);
         float price = -1;
         try {
             price = Float.parseFloat(Validation.getString("Enter Room Price: ", Validation.REGEX_NUMBER));

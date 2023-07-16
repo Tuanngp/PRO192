@@ -19,7 +19,7 @@ public class Validation {
     public static final String REGEX_EMAIL = "^[A-Za-z0-9+_.-]*@[A-Za-z0-9.-]*$";
     public static final String DATE_FORMAT= "dd/MM/yyyy";
     public static final String REGEX_DAYWORK = "^(?:[1-9]|[12]\\d|3[01])$";
-    public static final String ROOM_TYPE= "(?i)single room|couple room";
+    public static final String ROOM_TYPE= "(?i)single room|couple room*";
     public static final String REGEX_ROLE = "(?i)staff|manager+";
     private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
 
