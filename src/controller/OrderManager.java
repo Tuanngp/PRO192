@@ -124,11 +124,7 @@ public class OrderManager {
                     room = new Room(roomID, roomType, price, status);
                 }
 
-                Order order = new Order();
-                order.setOrderID(orderID);
-                order.setCustomer(customer);
-                order.setRoom(room);
-                order.setDayRent(dayRent);
+                Order order = new Order(room, customer, orderID, dayRent);
 
                 orders.add(order);
             }
@@ -138,5 +134,5 @@ public class OrderManager {
 
         return orders;
     }
-
 }
+
