@@ -130,9 +130,9 @@ public class CustomerManager {
 //    ------------------------------------------------------------------------------
     public boolean deleteCustomer(String id, String name, String phone, String email) {
         ArrayList<Customer> customersDeleted = search(p -> p.getId().equalsIgnoreCase(id) 
-                                                                && p.getName().equalsIgnoreCase(name)
-                                                                && p.getPhone().equalsIgnoreCase(phone)
-                                                                && p.getEmail().equalsIgnoreCase(email)) ;
+                                                        || p.getName().equalsIgnoreCase(name)
+                                                        || p.getPhone().equalsIgnoreCase(phone)
+                                                        || p.getEmail().equalsIgnoreCase(email)) ;
         for(Customer cus: customersDeleted ) {
             customers.remove(cus);
         }
