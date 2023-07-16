@@ -19,6 +19,7 @@ public class HotelManagement extends Menu<String>{
                 break;
             case "3":
                 orderManagement.run();
+                break;
             case "4":
                 break;
             default:
