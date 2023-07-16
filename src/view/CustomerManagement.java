@@ -1,9 +1,10 @@
 package view;
 
 import controller.CustomerManager;
+import model.person.Customer;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
-import model.Customer;
 
 public class CustomerManagement extends Menu<String>{
     static String[] customersMenu = {"Display All Customer","Add Customer", "Search Customer", "Update Customer", "Delete Customer", "Exit"};

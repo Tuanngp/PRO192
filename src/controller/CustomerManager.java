@@ -3,7 +3,8 @@ package controller;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.function.Predicate;
-import model.Customer;
+
+import model.person.Customer;
 import model.room.Room;
 
 /**
