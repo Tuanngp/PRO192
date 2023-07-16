@@ -99,7 +99,7 @@ public class OrderManager {
     // -----------------------------------------------------------
 
     public ArrayList<Order> readOrdersFromFile(String filename) throws IOException {
-        try (BufferedReader br = new BufferedReader(new FileReader("order.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");

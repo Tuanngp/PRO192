@@ -59,11 +59,8 @@ public class OrderManagement extends Menu<String> {
     
     // ------------------------------------------------------------------------------
     private void displayAllOrders() {
-        if (orderManager.getOrders().isEmpty()) {
-            System.out.println("No orders found.");
-        } else {
             orderManager.displayAllOrder();
-        }
+        
     }
     // --------------------------------------------------------------------------
     public void addOrder() {
