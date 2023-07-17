@@ -1,0 +1,8 @@
+1	KH006    Rose Red         0978412465   70 LoserPool     male     27/02/2003   red@gmail.com         silver    	101      Single Room      300000       Occupied    	10
+2	KH007    Roxy Blue        0944556016   21 MU            male     10/11/1991   roxyblue@gmail.com    diamond   	102      Single Room      300000       Occupied    	12
+3	KH008    Jenny Whiteky    0915677145   38 ManCity       female   09/02/1998   jenwhite.@gmail.com   diamond   	303      Couple Room      500000       Occupied    	24
+4	KH003    Loren Kaisa      0911145447   01 Asernon       male     13/10/2001   kaisa@gmail.com       silver    	304      Couple Room      500000       Occupied    	21
+1	KH006    Rose Red         0978412465   70 LoserPool     male     27/02/2003   red@gmail.com         silver    	101      Single Room      300000       Occupied    	10
+2	KH007    Roxy Blue        0944556016   21 MU            male     10/11/1991   roxyblue@gmail.com    diamond   	102      Single Room      300000       Occupied    	12
+3	KH008    Jenny Whiteky    0915677145   38 ManCity       female   09/02/1998   jenwhite.@gmail.com   diamond   	303      Couple Room      500000       Occupied    	24
+4	KH003    Loren Kaisa      0911145447   01 Asernon       male     13/10/2001   kaisa@gmail.com       silver    	304      Couple Room      500000       Occupied    	21
