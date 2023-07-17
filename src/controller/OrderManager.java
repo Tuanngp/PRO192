@@ -9,6 +9,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 import model.Order;
 import model.person.Customer;
@@ -156,12 +158,27 @@ public class OrderManager {
     }
 
     public void saveFileAndExit(String fileName) {
+        Set<String> existingData = new HashSet<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                existingData.add(line);
+            }
+        } catch (IOException e) {
+            System.out.println("Error occurred while reading data from file");
+            return;
+        }
+
         try (FileWriter writer = new FileWriter(fileName, true)) {
             for (Order order : orders) {
-                writer.write(order.toString() + "\n");
+                String orderString = order.toString();
+                if (!existingData.contains(orderString)) {
+                    writer.write(orderString + "\n");
+                }
             }
             System.out.println("Data written to file " + fileName + " successfully.");
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println("Error occurred while writing data to file");
         }
     }
