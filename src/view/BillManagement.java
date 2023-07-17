@@ -28,7 +28,6 @@ public class BillManagement extends Menu<String> {
                 break;
             case "4":
                 System.out.println("Back to main menu.");
-                
                 return;
             default:
             System.out.println("[ERROR] Invalid input! Please try again.");
@@ -69,7 +68,7 @@ public class BillManagement extends Menu<String> {
                             break;
                         case "4":
                             System.out.println("Exiting order search.");
-                            break;
+                            return;
                         default:
                             System.out.println("[ERROR] Invalid input! Please try again.");
                             break;

@@ -50,5 +50,4 @@ public class Bill {
     public String toString() {
         return "Order : " + order.getOrderID()+ "  Customer : " + order.getCustomer().getName() + "  "+ order.getCustomer().getId() + "  "+ order.getCustomer().getPhone() + "  "+ order.getCustomer().getEmail()+ "  Room : "+ order.getRoom().getRoomID()+ "  Bill = "+ calculateTotal()+"]";
     }
-    
 }
