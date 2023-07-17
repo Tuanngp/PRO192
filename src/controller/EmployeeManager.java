@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
+import model.person.Customer;
 import model.person.Employee;
 import view.Validation;
 
@@ -104,11 +105,18 @@ public class EmployeeManager {
     // ------------------------------------------------------------------------------
     public boolean deleteEmployee(String id, String name, String phone, String email) {
         ArrayList<Employee> employeesDeleted = search(p -> p.getId().equalsIgnoreCase(id)
-                && p.getName().equalsIgnoreCase(name)
-                && p.getPhone().equalsIgnoreCase(phone)
-                && p.getEmail().equalsIgnoreCase(email));
+                || p.getName().equalsIgnoreCase(name)
+                || p.getPhone().equalsIgnoreCase(phone)
+                || p.getEmail().equalsIgnoreCase(email));
 
+                for (Employee employee : employeesDeleted) {
+                    employees.remove(employee);
+                }
+        //         for(Customer cus: customersDeleted ) {
+        //     customers.remove(cus);
+        // }
         return !employeesDeleted.isEmpty();
+       
     }
     //-----------------------------------------------------------------------------
     public void loadEmployeesFromFile(String filename) throws IOException {
