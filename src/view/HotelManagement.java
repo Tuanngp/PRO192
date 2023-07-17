@@ -19,7 +19,6 @@ public class HotelManagement extends Menu<String>{
         super("Hotel Management System",hotelMenu);
         customerManagement.loadCustomersFromFile();
         employeeManagement.loadEmployeesFromFile();
-        orderManagement.loadOrdersFromFile();
     }
     @Override
     public void execute(String selected) {

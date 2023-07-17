@@ -105,56 +105,6 @@ public class OrderManager {
         Collections.sort(orders, Comparator.comparingInt(order -> order.getDayRent()));
     }
     // -----------------------------------------------------------
-
-    public void readOrdersFromFile(String filename) throws IOException {
-        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] data = line.split(",");
-                if (data.length == 14) {
-                    // get information 
-                    String roomID = data[0];
-                    // String roomType = data[1];
-                    // float price = Float.parseFloat(data[2]);
-                    boolean status = Boolean.parseBoolean(data[3]);
-                    String customerID = Validation.checkValue(data[4], Validation.REGEX_ID_KH);
-                    String customerName = Validation.checkValue(data[5], Validation.REGEX_NAME);
-                    String customerPhone = Validation.checkValue(data[6], Validation.REGEX_NUMBER);
-                    String customerAddress = Validation.checkValue(data[7], Validation.REGEX_ADDRESS);
-                    String customerGenderStr = Validation.checkValue(data[8], "(?i)male|female");
-                    boolean customerGender;
-                    if (customerGenderStr != null && customerGenderStr.equalsIgnoreCase("male")) {
-                        customerGender = true;
-                    } else {
-                        customerGender = false;
-                    }
-                    String dateOfBirthStr = data[9];
-                    LocalDate dateOfBirth = null;
-                    if (dateOfBirthStr != null) {
-                        dateOfBirth = LocalDate.parse(dateOfBirthStr, DateTimeFormatter.ofPattern(Validation.DATE_FORMAT));
-                    }
-                    String customerEmail = Validation.checkValue(data[10], Validation.REGEX_EMAIL);
-                    String customerRank = Validation.checkValue(data[11], Validation.REGEX_RANK);
-                    int orderID = Integer.parseInt(data[12]);
-                    int dayRent = Integer.parseInt(data[13]);
-                    // reference object
-                    Customer customer = new Customer(customerID, customerName, customerPhone, customerAddress,customerGender, dateOfBirth, customerEmail, customerRank);
-                    customerManager.getListCustomers().add(customer);
-                    Room room = roomManager.searchRoom(p->p.getRoomID().equalsIgnoreCase(roomID)).get(0);
-                    // room.setStatus(status);
-                    roomManager.orderRoomv(roomID);
-                    Order order = new Order(room, customer, orderID, dayRent);
-                    orders.add(order);
-                } else {
-                    System.out.println("Invalid file data");
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Error occurred while reading orders from file: " + filename);
-            e.printStackTrace();
-        }
-    }
-
     public void saveFileAndExit(String fileName) {
         Set<String> existingData = new HashSet<>();
 

@@ -53,15 +53,6 @@ public class OrderManagement extends Menu<String> {
             System.out.println("[ERROR] Invalid input! Please try again.");
         }
     }
-    
-    public void loadOrdersFromFile() {
-        String path = "order.txt";
-        try {
-            orderManager.readOrdersFromFile(path);
-        } catch (IOException e) {
-            System.out.println("[ERROR] Unable to load file " + path);
-        }
-    }
 
     // ------------------------------------------------------------------------------
     private void displayAllOrders() {
