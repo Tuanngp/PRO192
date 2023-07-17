@@ -5,6 +5,8 @@ import model.person.Customer;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class CustomerManagement extends Menu<String>{
     static String[] customersMenu = {"Display All Customer","Add Customer", "Search Customer", "Update Customer", "Delete Customer", "Save to file and Exit"};
@@ -198,5 +200,22 @@ public class CustomerManagement extends Menu<String>{
         };
         deleteMenu.run();
     }
-    
+    public void sortCustomer(){
+        String[] sortOptions={"Sort by id","Sort by name","Exit"};
+        Menu mSort = new Menu("Sorting Customer",sortOptions){
+            @Override
+            public void execute(String selected) {
+                switch(selected) {
+                    case "1": Collections.sort(customerManager.getListCustomers(), Comparator.comparing(Customer :: getId));
+                               break;
+                    case "2": Collections.sort(customerManager.getListCustomers(), Comparator.comparing(Customer :: getName));
+                               break;
+                    case "3": System.out.println("Exit searching menu");
+                                return;
+                    default: System.out.println("[ERROR] Unable to sort customer."); 
+                }
+                displayCustomers();
+            }
+        };
+    }
 }
