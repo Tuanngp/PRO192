@@ -60,7 +60,7 @@ public class BillManager {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = br.readLine()) != null) {
-                String[] data = line.split(",");
+                String[] data = line.split("|");
                 if (data.length == 14) {
                     String roomID = data[0];
                     String roomType = data[1];

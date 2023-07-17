@@ -54,11 +54,27 @@ public class OrderManagement extends Menu<String> {
         }
     }
 
+
+
+
+
+    public void loadOrderFromFile() {
+        String path = "order.txt";
+    try {
+        orderManager.loadOrdersFromFile(path);
+    
+    } catch (IOException e) {
+        System.out.println("[ERROR] Unable to load file " + path);
+    }
+}
+
     // ------------------------------------------------------------------------------
     private void displayAllOrders() {
             orderManager.displayAllOrder();
         
     }
+
+
     // --------------------------------------------------------------------------
     public void addOrder() {
         String customerId = Validation.getString("(*) Enter customer's ID: ", Validation.REGEX_ID_KH);
