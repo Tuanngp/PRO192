@@ -73,7 +73,8 @@ public class OrderManagement extends Menu<String> {
             customer = customerManager.search(p -> p.getId().equalsIgnoreCase(customerId)).get(0);
         } catch (Exception e) {
             // TODO: handle exception
-        }            customer = null;
+            customer = null;
+        }            
 
 
         if (customer == null) {
