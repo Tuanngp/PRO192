@@ -73,6 +73,11 @@ public class CustomerManager {
         return false;
     }
     
+    public void addCustomers(Customer customer) {
+        // if(customer != null && !isDupplication(customer.getId())) {
+            customers.add(customer);
+        // }
+    }
 //    ------------------------------------------------------------------------------
     public boolean isDupplication(String id) {
         return !search(p -> p.getId().equals(id)).isEmpty();

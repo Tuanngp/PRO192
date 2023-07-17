@@ -13,12 +13,6 @@ public class CustomerManagement extends Menu<String>{
     CustomerManager customerManager = new CustomerManager();
     public CustomerManagement() {
         super("Customer Management System", customersMenu );
-        try{
-            customerManager.loadCustomersFromFile("customer.txt");
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
     }
    
     @Override
@@ -51,6 +45,15 @@ public class CustomerManagement extends Menu<String>{
         }
     }
     
+    public void loadCustomersFromFile() {
+        String path = "customer.txt";
+        try{
+            customerManager.loadCustomersFromFile(path);
+        }
+        catch(Exception e){
+            System.out.println("[ERROR] Unable to load file " + path);
+        }
+    }
     public void displayCustomers() {
         System.out.println("List all customers: ");
         customerManager.displayCustomers();
@@ -78,7 +81,7 @@ public class CustomerManagement extends Menu<String>{
         }
     }
 
-    public static Customer getCustomer(String id) {
+    public Customer getCustomer(String id) {
         String name = Validation.getString("Enter customer's name: ", Validation.REGEX_NAME);
         String phone = Validation.getString("Enter customer's phone:", Validation.REGEX_NUMBER);
         String address = Validation.getString("Enter Customer Address: ", Validation.REGEX_ADDRESS);
@@ -86,6 +89,12 @@ public class CustomerManagement extends Menu<String>{
         LocalDate dateOfBirth = Validation.getLocalDate(Validation.getDate("(*)Enter customer's date of birth: "));
         String email = Validation.getString("Enter customer's email: ", Validation.REGEX_EMAIL);
         Customer customer = new Customer(id, name, phone, address, gender, dateOfBirth, email, "member");
+        if(customerManager.addCustomer(customer)){
+            System.out.println("Customer " + id + " added succesfully.");
+        } else {
+            System.out.println("Falure to add Customer.");
+        }
+
         return customer;
     }
     

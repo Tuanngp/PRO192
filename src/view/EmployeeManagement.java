@@ -15,17 +15,19 @@ import model.person.Employee;
 
 public class EmployeeManagement extends Menu<String> {
     static String[] EmployeeMenu = { "Display All Employee", "Add Employee", "Search Employee", "Update Employee",
-            "Delete Employee","Sort Employee", "Exit" };
+            "Delete Employee", "Sort Employee", "Exit" };
     EmployeeManager employeeManager = new EmployeeManager();
 
     public EmployeeManagement() {
         super("Employee Management System", EmployeeMenu);
+
         try {
             employeeManager.loadEmployeesFromFile("employee.txt");
         } catch (IOException e) {
             e.printStackTrace();
             ;
         }
+
     }
 
     @Override
@@ -67,6 +69,14 @@ public class EmployeeManagement extends Menu<String> {
 
     private void sortEmpoyee() {
 
+    public void loadEmployeesFromFile() {
+            String path = "employee.txt";
+        try{
+            employeeManager.loadEmployeesFromFile(path);
+        }
+        catch(IOException e){
+            System.out.println("[ERROR] Unable to load file " + path);
+        }
     }
 
     public void displayEmployees() {
@@ -240,6 +250,6 @@ public class EmployeeManagement extends Menu<String> {
             }
         };
         mSort.run();
-
     }
+    
 }

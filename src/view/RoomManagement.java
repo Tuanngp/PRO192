@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import model.Order;
-import model.person.Customer;
 import model.room.Room;
 
 public class RoomManagement extends Menu<String> {

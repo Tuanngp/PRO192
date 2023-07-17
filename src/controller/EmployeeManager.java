@@ -11,7 +11,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
-import model.person.Customer;
 import model.person.Employee;
 import view.Validation;
 

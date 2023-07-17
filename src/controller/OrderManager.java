@@ -11,14 +11,13 @@ import java.util.Comparator;
 import java.util.function.Predicate;
 import model.Order;
 import model.person.Customer;
-import model.room.CoupleRoom;
 import model.room.Room;
-import model.room.SingleRoom;
 import view.Validation;
 
 public class OrderManager {
     private ArrayList<Order> orders;
     RoomManager roomManager = new RoomManager();
+    CustomerManager customerManager = new CustomerManager();
     // -------------------------------------------------
     public OrderManager() {
         orders = new ArrayList<>();
@@ -135,19 +134,10 @@ public class OrderManager {
                     int orderID = Integer.parseInt(data[12]);
                     int dayRent = Integer.parseInt(data[13]);
                     
-                    Customer customer = new Customer(customerID, customerName, customerPhone, customerAddress,
-                            customerGender, dateOfBirth, customerEmail, customerRank);
+                    Customer customer = new Customer(customerID, customerName, customerPhone, customerAddress,customerGender, dateOfBirth, customerEmail, customerRank);
+                    customerManager.getListCustomers().add(customer);
                     Room room = roomManager.searchRoom(p->p.getRoomID().equalsIgnoreCase(roomID)).get(0);
-//                    if (roomType.equalsIgnoreCase("Single Room")) {
-//                        //room = new SingleRoom(roomID);
-//                        
-//                    } else if (roomType.equalsIgnoreCase("Couple Room")) {
-//                       // room = new CoupleRoom(roomID);
-//                    } 
-//                    //else {
-//                        room = new Room(roomID, roomType, price, status);
-                    //}
-                        room.setStatus(status);
+                    room.setStatus(status);
                     roomManager.orderRoomv(roomID);
                     Order order = new Order(room, customer, orderID, dayRent);
                     order.setCustomer(customer);

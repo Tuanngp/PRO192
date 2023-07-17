@@ -45,12 +45,10 @@ public class Bill {
         }
         return total;
     }
-    
+
     @Override
     public String toString() {
-        return String.format("%-6d,%-16s,%-8s,%-12s,%-18s,%-8s,%-12.0lf",
-                getOrderId(),getCustomer().getName(),getCustomer().getId(),
-                getCustomer().getPhone(),getCustomer().getEmail(),
-                getRoom().getRoomID(),calculateTotal());
+        return "Order : " + order.getOrderID()+ "  Customer : " + order.getCustomer().getName() + "  "+ order.getCustomer().getId() + "  "+ order.getCustomer().getPhone() + "  "+ order.getCustomer().getEmail()+ "  Room : "+ order.getRoom().getRoomID()+ "  Bill = "+ calculateTotal()+"]";
     }
+    
 }
