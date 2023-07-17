@@ -99,7 +99,6 @@ public class BillManager {
                 }
 
             }
-            System.out.println("doc duoc roi ne tuan ngu");
         } catch (Exception e) {
             System.out.println("Error occurred while reading orders from file: " + filename);
             e.printStackTrace();

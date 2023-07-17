@@ -25,7 +25,7 @@ public class Customer extends Person{
     
     @Override
     public String toString() {
-        return super.toString() + String.format("%-10s", getRank());
+        return super.toString() + String.format("%-10s|", getRank());
     }
 
 }

@@ -53,7 +53,7 @@ public class Room {
     @Override
     public String toString() {
         String status = this.status?"Occupied":"Vacant";
-        return String.format("%-8s %-16s %-12.0f %-12s", roomID, roomType, price, status);
+        return String.format("%-8s|%-16s|%-12.0f|%-12s|", roomID, roomType, price, status);
     }
 
 

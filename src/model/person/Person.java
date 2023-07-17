@@ -113,6 +113,6 @@ public class Person {
     @Override
     public String toString() {
         String genderString = this.gender ? "male" : "female";
-        return String.format("%-8s %-16s %-12s %-16s %-8s %-12s %-22s" , getId(), getName(), getPhone(), getAddress(), genderString, getDateOfBirthStr(), getEmail());
+        return String.format("%-8s|%-16s|%-12s|%-16s|%-8s|%-12s|%-22s|" , getId(), getName(), getPhone(), getAddress(), genderString, getDateOfBirthStr(), getEmail());
     }
 }
