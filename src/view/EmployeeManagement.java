@@ -50,9 +50,7 @@ public class EmployeeManagement extends Menu<String> {
                 break;
             case "6":
                 sortCustomer();
-
                 break;
-
             case "7":
                 try {
                     employeeManager.saveFileAndExit("employee_output.txt");
@@ -65,9 +63,7 @@ public class EmployeeManagement extends Menu<String> {
                 System.out.println("[ERROR] Invalid input! Please try again.");
                 break;
         }
-    }
-
-    private void sortEmpoyee() {
+    };
 
     public void loadEmployeesFromFile() {
             String path = "employee.txt";
