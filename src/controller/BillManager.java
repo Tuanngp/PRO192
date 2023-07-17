@@ -60,31 +60,31 @@ public class BillManager {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = br.readLine()) != null) {
-                String[] data = line.split("|");
+                String[] data = line.split(",");
                 if (data.length == 14) {
-                    String roomID = data[0];
-                    String roomType = data[1];
-                    float price = Float.parseFloat(data[2]);
-                    boolean status = Boolean.parseBoolean(data[3]);
-                    String customerID = Validation.checkValue(data[4], Validation.REGEX_ID_KH);
-                    String customerName = Validation.checkValue(data[5], Validation.REGEX_NAME);
-                    String customerPhone = Validation.checkValue(data[6], Validation.REGEX_NUMBER);
-                    String customerAddress = Validation.checkValue(data[7], Validation.REGEX_ADDRESS);
-                    String customerGenderStr = Validation.checkValue(data[8], "(?i)male|female");
+                    String roomID = data[9];
+                    String roomType = data[10];
+                    float price = Float.parseFloat(data[11]);
+                    boolean status = Boolean.parseBoolean(data[12]);
+                    String customerID = Validation.checkValue(data[1], Validation.REGEX_ID_KH);
+                    String customerName = Validation.checkValue(data[2], Validation.REGEX_NAME);
+                    String customerPhone = Validation.checkValue(data[3], Validation.REGEX_NUMBER);
+                    String customerAddress = Validation.checkValue(data[4], Validation.REGEX_ADDRESS);
+                    String customerGenderStr = Validation.checkValue(data[5], "(?i)male|female");
                     boolean customerGender;
                     if (customerGenderStr != null && customerGenderStr.equalsIgnoreCase("male")) {
                         customerGender = true;
                     } else {
                         customerGender = false;
                     }
-                    String dateOfBirthStr = data[9];
+                    String dateOfBirthStr = data[6];
                     LocalDate dateOfBirth = null;
                             if (dateOfBirthStr != null) {
                                 dateOfBirth = LocalDate.parse(dateOfBirthStr, DateTimeFormatter.ofPattern(Validation.DATE_FORMAT));
                                }
-                    String customerEmail = Validation.checkValue(data[10], Validation.REGEX_EMAIL);
-                    String customerRank = Validation.checkValue(data[11], Validation.REGEX_RANK);
-                    int orderID = Integer.parseInt(data[12]);
+                    String customerEmail = Validation.checkValue(data[7], Validation.REGEX_EMAIL);
+                    String customerRank = Validation.checkValue(data[8], Validation.REGEX_RANK);
+                    int orderID = Integer.parseInt(data[0]);
                     int dayRent = Integer.parseInt(data[13]);
                     
                     Customer customer = new Customer(customerID, customerName, customerPhone, customerAddress,
@@ -101,32 +101,20 @@ public class BillManager {
                 }
 
             }
-            System.out.println("Add Bill Successful");
+            System.out.println("Read Successful");
         } catch (Exception e) {
             System.out.println("Error occurred while reading orders from file: " + filename);
             e.printStackTrace();
         }
     }
     public void saveFileAndExit(String fileName) {
-        Set<String> existingData = new HashSet<>();
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                existingData.add(line);
-            }
-        } catch (IOException e) {
-            System.out.println("Error occurred while reading data from file");
-            return;
-        }
-
         try (FileWriter writer = new FileWriter(fileName, true)) {
+            String billString="";
             for (Bill bill : bills) {
-                String billString = bill.toString();
-                if (!existingData.contains(billString)) {
-                    writer.write(billString + "\n");
-                }
+                billString += bill.toString()+"\n";
+                
             }
+            writer.write(billString);
             System.out.println("Data written to file " + fileName + " successfully.");
         } catch (IOException e) {
             System.out.println("Error occurred while writing data to file");

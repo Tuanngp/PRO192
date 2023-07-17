@@ -161,25 +161,16 @@ public class OrderManager {
     }
     // -----------------------------------------------------------
     public void saveFileAndExit(String fileName) {
-        Set<String> existingData = new HashSet<>();
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                existingData.add(line);
-            }
-        } catch (IOException e) {
-            System.out.println("Error occurred while reading data from file");
-            return;
-        }
-
-        try (FileWriter writer = new FileWriter(fileName, true)) {
+        
+        try (FileWriter writer = new FileWriter(fileName)) {
+            String orderStr="";
             for (Order order : orders) {
-                String orderString = order.toString();
-                if (!existingData.contains(orderString)) {
-                    writer.write(orderString + "\n");
-                }
+                orderStr+=order.getOrderID()+","+order.getCustomer().getId()+","+order.getCustomer().getName()+","+order.getCustomer().getPhone()+","+order.getCustomer().getAddress()+","+order.getCustomer().isGender()+","+order.getCustomer().getDateOfBirthStr()
+                +","+order.getCustomer().getEmail()+","+order.getCustomer().getRank()+","+order.getRoom().getRoomID()+","+order.getRoom().getRoomType()+","+order.getRoom().getPrice()+","+order.getRoom().getStatus()
+                +","+order.getDayRent()+"\n";
+                
             }
+            writer.write(orderStr);
             System.out.println("Data written to file " + fileName + " successfully.");
         } catch (IOException e) {
             System.out.println("Error occurred while writing data to file");

@@ -1,0 +1,4 @@
+Order : 1  Customer : Rose Red  KH006  0978412465  red@gmail.com  Room : 101  Bill = 2850000.0]
+Order : 2  Customer : Roxy Blue  KH007  0944556016  roxyblue@gmail.com  Room : 102  Bill = 3060000.0]
+Order : 3  Customer : Jenny Whiteky  KH008  0915677145  jenwhite.@gmail.com  Room : 303  Bill = 1.02E7]
+Order : 4  Customer : Loren Kaisa  KH003  0911145447  kaisa@gmail.com  Room : 304  Bill = 9975000.0]
