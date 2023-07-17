@@ -282,15 +282,15 @@ public class RoomManagement extends Menu<String> {
             @Override
             public void execute(String selected) {
                 switch (selected) {
-                    case "1" -> {
+                    case "1" :
                         ArrayList<Room> roomID = roomManager.getListRoom();
-                        Collections.sort(roomID, Comparator.comparing(Room::getRoomID).reversed());
+                        Collections.sort(roomID, Comparator.comparing(Room::getRoomID));
                         displayRoom();
-                    }
-                    case "2" -> {
+                    break;
+                    case "2":
                         System.out.println("Exit!");
-                    }
-                    default ->
+                        return;
+                    default:
                         System.out.println("Try again");
                 }
             }
