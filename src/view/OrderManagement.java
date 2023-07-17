@@ -1,7 +1,6 @@
 package view;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 
 import controller.CustomerManager;
@@ -73,25 +72,20 @@ public class OrderManagement extends Menu<String> {
     public void addOrder() {
         String customerId = Validation.getString("(*) Enter customer's ID: ", Validation.REGEX_ID_KH);
         Customer customer = null;
-
         try {
             customer = customerManager.search(p -> p.getId().equalsIgnoreCase(customerId)).get(0);
         } catch (Exception e) {
-            // TODO: handle exception
-            customer = null;
-        }            
-
+            System.out.println("Customer with ID " + customerId + " does not exist. Please create the customer first.");
+        }
 
         if (customer == null) {
-            System.out.println("Customer with ID " + customerId + " does not exist. Please create the customer first.");
             customer = customerManagement.getCustomer(customerId);
         }
+
         Room room = roomManagement.getRoom();
         int dayRent = Integer.parseInt(Validation.getString("Enter the number of days to rent: ", Validation.REGEX_NUMBER));
         int randomNumber = generateUniqueOrderNumber();
-        //Room room1 = roomManager.searchRoom(p->p.getRoomID().equalsIgnoreCase(room.getRoomID())).get(0);
         Order order = new Order(room, customer, randomNumber, dayRent);
-//        System.out.println(order.toString());
         if (orderManager.addOrder(order,customer,room)) {
             System.out.println("Order placed successfully.");
         } else {

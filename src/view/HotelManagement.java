@@ -20,7 +20,6 @@ public class HotelManagement extends Menu<String>{
         customerManagement.loadCustomersFromFile();
         employeeManagement.loadEmployeesFromFile();
         orderManagement.loadOrdersFromFile();
-
     }
     @Override
     public void execute(String selected) {

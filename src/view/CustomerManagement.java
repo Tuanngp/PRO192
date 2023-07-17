@@ -19,12 +19,6 @@ public class CustomerManagement extends Menu<String>{
     public void execute(String selected) {
         switch(selected) {
             case "1":
-            Customer customer1 = new Customer("123456", "John Doe", "0987654321", "123 Main Street, Anytown, CA 91234", true, LocalDate.of(1990, 1, 1), "johndoe@example.com", "Platinum");
-            Customer customer2 = new Customer("654321", "Jane Doe", "0876543210", "456 Elm Street, Anytown, CA 91234", false, LocalDate.of(1991, 2, 2), "janedoe@example.com", "Gold");
-            Customer customer3 = new Customer("789012", "John Smith", "0765432109", "789 Oak Street, Anytown, CA 91234", true, LocalDate.of(1992, 3, 3), "johnsmith@example.com", "Silver");
-                customerManager.addCustomer(customer1);
-                customerManager.addCustomer(customer2);
-                customerManager.addCustomer(customer3);
                 displayCustomers();
                 break;
             case "2":
