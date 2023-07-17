@@ -2,24 +2,29 @@ package view;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import controller.EmployeeManager;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
+
+import model.person.Customer;
 import model.person.Employee;
 
 public class EmployeeManagement extends Menu<String> {
     static String[] EmployeeMenu = { "Display All Employee", "Add Employee", "Search Employee", "Update Employee",
-            "Delete Employee", "Exit" };
+            "Delete Employee","Sort Employee", "Exit" };
     EmployeeManager employeeManager = new EmployeeManager();
 
     public EmployeeManagement() {
         super("Employee Management System", EmployeeMenu);
-        try{
-        employeeManager.loadEmployeesFromFile("employee.txt");
-        }
-        catch(IOException e){
-            e.printStackTrace();;
+        try {
+            employeeManager.loadEmployeesFromFile("employee.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+            ;
         }
     }
 
@@ -42,10 +47,14 @@ public class EmployeeManagement extends Menu<String> {
                 deleteEmployee();
                 break;
             case "6":
-                try{
-                employeeManager.saveFileAndExit("employee_output.txt");
-                }
-                catch(Exception e){
+                sortCustomer();
+
+                break;
+
+            case "7":
+                try {
+                    employeeManager.saveFileAndExit("employee_output.txt");
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 System.out.println("Exit Employee Management System!");
@@ -54,6 +63,10 @@ public class EmployeeManagement extends Menu<String> {
                 System.out.println("[ERROR] Invalid input! Please try again.");
                 break;
         }
+    }
+
+    private void sortEmpoyee() {
+
     }
 
     public void displayEmployees() {
@@ -96,7 +109,8 @@ public class EmployeeManagement extends Menu<String> {
                 ArrayList<Employee> rs = null;
                 switch (selected) {
                     case "1":
-                        String val = Validation.getString("Enter ID's Employee you want to search: ", Validation.REGEX_ID_NV);
+                        String val = Validation.getString("Enter ID's Employee you want to search: ",
+                                Validation.REGEX_ID_NV);
                         rs = employeeManager.search(p -> p.getId().equalsIgnoreCase(val));
                         break;
                     case "2":
@@ -112,10 +126,10 @@ public class EmployeeManagement extends Menu<String> {
                         rs = employeeManager.search(p -> p.getEmail().equalsIgnoreCase(val));
                         break;
                     case "5":
-                    
-                        System.out.println("Exit Searching Menu!"); 
-                    
-                       return;
+
+                        System.out.println("Exit Searching Menu!");
+
+                        return;
                     default:
                         System.out.println("[ERROR] Invalid input! Please try again.");
                         break;
@@ -200,5 +214,32 @@ public class EmployeeManagement extends Menu<String> {
             }
         };
         deleteMenu.run();
+    }
+
+    // -------------------------------------------------------------------------------------------------------------------------------
+    public void sortCustomer() {
+        String[] sortOptions = { "Sort by id", "Sort by name", "Exit" };
+        Menu mSort = new Menu("Sorting Customer", sortOptions) {
+            @Override
+            public void execute(String selected) {
+                switch (selected) {
+                    case "1":
+                        Collections.sort(employeeManager.getListEmployees(), Comparator.comparing(Employee:: getId));
+                        
+                        break;
+                    case "2":
+                        Collections.sort(employeeManager.getListEmployees(), Comparator.comparing(Employee::getName));
+                        break;
+                    case "3":
+                        System.out.println("Exit searching menu");
+                        return;
+                    default:
+                        System.out.println("[ERROR] Unable to sort customer.");
+                }
+                employeeManager.displayEmployees();
+            }
+        };
+        mSort.run();
+
     }
 }
