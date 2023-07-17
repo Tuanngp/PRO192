@@ -2,10 +2,13 @@ package controller;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import model.Bill;
@@ -21,7 +24,6 @@ public class BillManager {
     ArrayList<Order> orders=new ArrayList<>();
     
     public void addBill(){
-        readOrdersFromFile("order.txt");
         for (Order order : orders){
             Bill bill=new Bill(order);
             bills.add(bill);
@@ -99,9 +101,35 @@ public class BillManager {
                 }
 
             }
+            System.out.println("Add Bill Successful");
         } catch (Exception e) {
             System.out.println("Error occurred while reading orders from file: " + filename);
             e.printStackTrace();
+        }
+    }
+    public void saveFileAndExit(String fileName) {
+        Set<String> existingData = new HashSet<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                existingData.add(line);
+            }
+        } catch (IOException e) {
+            System.out.println("Error occurred while reading data from file");
+            return;
+        }
+
+        try (FileWriter writer = new FileWriter(fileName, true)) {
+            for (Bill bill : bills) {
+                String billString = bill.toString();
+                if (!existingData.contains(billString)) {
+                    writer.write(billString + "\n");
+                }
+            }
+            System.out.println("Data written to file " + fileName + " successfully.");
+        } catch (IOException e) {
+            System.out.println("Error occurred while writing data to file");
         }
     }
 }

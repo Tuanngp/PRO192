@@ -47,7 +47,7 @@ public class OrderManagement extends Menu<String> {
                 break;
             case "7":
                 System.out.println("Back to main menu.");
-                orderManager.saveFileAndExit("order_ouput.txt");
+                orderManager.saveFileAndExit("order_output.txt");
                 return;
             default:
             System.out.println("[ERROR] Invalid input! Please try again.");

@@ -27,6 +27,7 @@ public class BillManagement extends Menu<String> {
                 searchBill();
                 break;
             case "4":
+                billManager.saveFileAndExit("bill_output.txt");
                 System.out.println("Back to main menu.");
                 return;
             default:
@@ -37,9 +38,17 @@ public class BillManagement extends Menu<String> {
     }
     
     // ------------------------------------------------------------------------------
-    private void displayAllBills() {
+    public void displayAllBills() {
             billManager.displayAllBills();
         
+    }
+
+    public void loadBillFromFile(){
+        try {
+            billManager.readOrdersFromFile("order_output.txt");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
     // --------------------------------------------------------------------------
     public void addBill() {
