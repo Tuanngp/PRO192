@@ -13,12 +13,8 @@ import model.person.Employee;
 import view.Validation;
 
 public class EmployeeManager {
-    ArrayList<Employee> employees;
-
-    public EmployeeManager() {
-        employees = new ArrayList<>();
-    }
-
+    protected ArrayList<Employee> employees= new ArrayList<>();
+ 
     public ArrayList<Employee> getListEmployees() {
         return employees;
     }

@@ -12,11 +12,7 @@ import java.util.function.Predicate;
 import model.person.Customer;
 import view.Validation;
 public class CustomerManager {
-    ArrayList<Customer> customers;
-
-    public CustomerManager() {
-        customers = new ArrayList<>();
-    }
+    protected ArrayList<Customer> customers = new ArrayList<>();;
     
     public ArrayList<Customer> getListCustomers() {
         return customers;

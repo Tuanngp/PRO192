@@ -3,6 +3,3 @@ KH002    Jenny Blacky     0915677741   102 Truong Chinh female   19/02/1999   je
 KH003    Loren Orn        0911145733   49 Berlin        male     11/12/2000   orn@gmail.com         gold      
 KH004    Rose Pink        0978412356   69 Victory St    female   30/01/2002   pink@gmail.com        diamond   
 KH005    Roxy Ardex       0944556610   111 Green St     female   09/12/1990   roar@gmail.com        gold      
-123456   John Doe         0987654321   123 Main Street, Anytown, CA 91234 male     01/01/1990   johndoe@example.com   Platinum  
-654321   Jane Doe         0876543210   456 Elm Street, Anytown, CA 91234 female   02/02/1991   janedoe@example.com   Gold      
-789012   John Smith       0765432109   789 Oak Street, Anytown, CA 91234 male     03/03/1992   johnsmith@example.com Silver    
