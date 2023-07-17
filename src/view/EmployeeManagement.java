@@ -55,14 +55,13 @@ public class EmployeeManagement extends Menu<String> {
                 System.out.println("[ERROR] Invalid input! Please try again.");
                 break;
         }
-    };
+    }
 
     public void loadEmployeesFromFile() {
-            String path = "employee.txt";
-        try{
+        String path = "employee.txt";
+        try {
             employeeManager.loadEmployeesFromFile(path);
-        }
-        catch(IOException e){
+        } catch (IOException e) {
             System.out.println("[ERROR] Unable to load file " + path);
         }
     }
@@ -222,8 +221,8 @@ public class EmployeeManagement extends Menu<String> {
             public void execute(String selected) {
                 switch (selected) {
                     case "1":
-                        Collections.sort(employeeManager.getListEmployees(), Comparator.comparing(Employee:: getId));
-                        
+                        Collections.sort(employeeManager.getListEmployees(), Comparator.comparing(Employee::getId));
+
                         break;
                     case "2":
                         Collections.sort(employeeManager.getListEmployees(), Comparator.comparing(Employee::getName));
@@ -239,5 +238,4 @@ public class EmployeeManagement extends Menu<String> {
         };
         mSort.run();
     }
-    
 }
