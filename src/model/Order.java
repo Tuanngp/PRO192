@@ -47,7 +47,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return orderID + "\t" + customer.toString() + "\t" + room.toString();
+        return orderID + "\t" + customer.toString() + "\t" + room.toString() + "\t" +dayRent;
     }
 
     /**

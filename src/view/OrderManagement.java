@@ -1,6 +1,7 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 import controller.CustomerManager;
@@ -107,12 +108,23 @@ public class OrderManagement extends Menu<String> {
                 switch (selected) {
                     case "1":
                         String roomID = Validation.getString("Enter new Room ID: ", Validation.REGEX_NUMBER);
-                        Room newRoom = roomManager.searchRoom(p -> p.getRoomID().equals(roomID)).get(0);
-                        if (orderManager.updateOrder(order, newRoom, -1)) {
+                        Room newRoom = null;
+                        try {
+                            newRoom = roomManager.searchRoom(p -> p.getRoomID().equals(roomID)).get(0);
+                        } catch (Exception e) {
+                            // TODO: handle exception
+                            newRoom = null;
+                            System.out.println("Room " + roomID + "does not exist.");
+                        }
+                        try {
+                            if (orderManager.updateOrder(order, newRoom, -1)) {
                             System.out.println("Order updated successfully.");
-                        } else {
+                        }
+                        } catch (Exception e) {
+                            // TODO: handle exception
                             System.out.println("Failed to update the order.");
                         }
+
                         break;
                     case "2":
                         int dayRent = Integer.parseInt(Validation.getString("Enter new day rent: ", Validation.REGEX_NUMBER));
@@ -177,9 +189,19 @@ public class OrderManagement extends Menu<String> {
     // --------------------------------------------------------------------------
     public void deleteOrder() {
         String id = Validation.getString("Enter customer's id to delete order:", Validation.REGEX_ID_KH);
+        Order order = null;
+        try {
+            order = orderManager.search(p -> p.getCustomer().getId().equalsIgnoreCase(id)).get(0);
+        } catch (Exception e) {
+            // TODO: handle exception
+            order = null;
+        }
+        if(order==null) {
+            System.out.println("No founds, Unable to delete order.");
+            return;
+        } 
         String confirmation = Validation.getString("Are you sure you want to delete order? (Yes/No): ", Validation.REGEX_CONFIRM);
-        if (confirmation.equalsIgnoreCase("yes")) {
-            Order order = orderManager.search(p -> p.getCustomer().getId().equalsIgnoreCase(id)).get(0);
+        if (confirmation.equalsIgnoreCase("yes") && order != null) {
             if (order != null) {
                 if (orderManager.deleteOrder(order)) {
                     System.out.println("Order " + order.getOrderID() + " has been deleted successfully.");
@@ -187,6 +209,8 @@ public class OrderManagement extends Menu<String> {
                     System.out.println("Failed to delete the order.");
                 }
             }
+        } else {
+            System.out.println("Cancle delete order.");
         }
     }
 
@@ -195,6 +219,21 @@ public class OrderManagement extends Menu<String> {
         System.out.println("List of orders after sorting by day rent:");
         orderManager.sortOrder();
         displayAllOrders();
+    }
+
+    public void sortOrder() {
+        String[] sortOptions = {"Sort order by ID", "Sort order by Day Rented", "Exit"};
+        Menu sortMenu = new Menu("Sorting Order", sortOptions) {
+
+            @Override
+            public void execute(String selected) {
+                switch(selected) {
+                    case "1":
+                        break;
+                }
+            }
+            
+        };
     }
     // -----------------------------------------------------------------
     public int generateUniqueOrderNumber() {
