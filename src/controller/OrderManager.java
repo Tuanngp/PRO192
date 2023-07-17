@@ -2,6 +2,7 @@ package controller;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -109,6 +110,7 @@ public class OrderManager {
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
                 if (data.length == 14) {
+                    // get information 
                     String roomID = data[0];
                     String roomType = data[1];
                     float price = Float.parseFloat(data[2]);
@@ -126,14 +128,14 @@ public class OrderManager {
                     }
                     String dateOfBirthStr = data[9];
                     LocalDate dateOfBirth = null;
-                            if (dateOfBirthStr != null) {
-                                dateOfBirth = LocalDate.parse(dateOfBirthStr, DateTimeFormatter.ofPattern(Validation.DATE_FORMAT));
-                               }
+                    if (dateOfBirthStr != null) {
+                        dateOfBirth = LocalDate.parse(dateOfBirthStr, DateTimeFormatter.ofPattern(Validation.DATE_FORMAT));
+                    }
                     String customerEmail = Validation.checkValue(data[10], Validation.REGEX_EMAIL);
                     String customerRank = Validation.checkValue(data[11], Validation.REGEX_RANK);
                     int orderID = Integer.parseInt(data[12]);
                     int dayRent = Integer.parseInt(data[13]);
-                    
+                    // reference object 
                     Customer customer = new Customer(customerID, customerName, customerPhone, customerAddress,customerGender, dateOfBirth, customerEmail, customerRank);
                     customerManager.getListCustomers().add(customer);
                     Room room = roomManager.searchRoom(p->p.getRoomID().equalsIgnoreCase(roomID)).get(0);
@@ -150,6 +152,17 @@ public class OrderManager {
         } catch (Exception e) {
             System.out.println("Error occurred while reading orders from file: " + filename);
             e.printStackTrace();
+        }
+    }
+
+    public void saveFileAndExit(String fileName) {
+        try (FileWriter writer = new FileWriter(fileName, true)) {
+            for (Order order : orders) {
+                writer.write(order.toString() + "\n");
+            }
+            System.out.println("Data written to file " + fileName + " successfully.");
+        } catch (Exception e) {
+            System.out.println("Error occurred while writing data to file");
         }
     }
 }

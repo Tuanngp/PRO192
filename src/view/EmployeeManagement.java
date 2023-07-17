@@ -20,14 +20,6 @@ public class EmployeeManagement extends Menu<String> {
 
     public EmployeeManagement() {
         super("Employee Management System", EmployeeMenu);
-
-        try {
-            employeeManager.loadEmployeesFromFile("employee.txt");
-        } catch (IOException e) {
-            e.printStackTrace();
-            ;
-        }
-
     }
 
     @Override
