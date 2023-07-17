@@ -1,5 +1,9 @@
 package view;
-
+// Lộc - Employee
+// Hoàng Phúc - Room
+// Hồng Phúc - Bill
+// Duy An - Cusotomer
+// Tuấn - Order 
 import controller.BillManager;
 
 public class HotelManagement extends Menu<String>{

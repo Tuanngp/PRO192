@@ -7,26 +7,12 @@ public class Employee extends Person {
     private int dayWork;
     private String role;
 
-//    public Employee(String id, String name, String phone, String address, boolean gender, LocalDate dateOfBirth,
-//            String email, int dayWork, String role, float salary) {
-//        super(id, name, phone, address, gender, dateOfBirth, email);
-//        this.dayWork = dayWork;
-//        this.role = role;
-//        this.salary = salary;
-//    }
-
-   public Employee(String id, String name, String phone, String address, boolean gender, LocalDate dateOfBirth,
+    public Employee(String id, String name, String phone, String address, boolean gender, LocalDate dateOfBirth,
             String email, int dayWork, String role) {
         super(id, name, phone, address, gender, dateOfBirth, email);
         this.dayWork = dayWork;
         this.role = role;
     }
-   
-//    public Employee(int dayWork, String role, float salary) {
-//        this.dayWork = dayWork;
-//        this.role = role;
-//        this.salary = salary;
-//    }
 
     public int getDayWork() {
         return dayWork;
