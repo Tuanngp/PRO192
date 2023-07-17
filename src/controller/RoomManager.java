@@ -59,6 +59,10 @@ public class RoomManager {
         }
         return roomSearch;
     }
+
+    public Room searchRoomByID(String id) {
+        return rooms.stream().filter(p -> p.getRoomID().equals(id)).findFirst().orElse(null);
+    }
     //--------------------------------------------------------------------------
     public ArrayList<Room> getAvailableRooms() {
     ArrayList<Room> availableRooms = new ArrayList<>();
