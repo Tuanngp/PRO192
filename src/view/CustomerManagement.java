@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class CustomerManagement extends Menu<String>{
-    static String[] customersMenu = {"Display All Customer","Add Customer", "Search Customer", "Update Customer", "Delete Customer", "Save to file and Exit"};
+    static String[] customersMenu = {"Display All Customer","Add Customer", "Search Customer", "Update Customer", "Delete Customer","Sort Customer","Save to file and Exit"};
     CustomerManager customerManager = new CustomerManager();
     public CustomerManagement() {
         super("Customer Management System", customersMenu );
@@ -40,6 +40,9 @@ public class CustomerManagement extends Menu<String>{
                 deleteCustomer();
                 break;
             case "6":
+                sortCustomer();
+                break;
+            case "7":
                 customerManager.saveFileAndExit("customer_ouput.txt");
                 System.out.println("Exit Customer Management System!");
                 return;
