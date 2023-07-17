@@ -141,11 +141,9 @@ public class OrderManager {
                     Customer customer = new Customer(customerID, customerName, customerPhone, customerAddress,customerGender, dateOfBirth, customerEmail, customerRank);
                     customerManager.getListCustomers().add(customer);
                     Room room = roomManager.searchRoom(p->p.getRoomID().equalsIgnoreCase(roomID)).get(0);
-                    room.setStatus(status);
+                    // room.setStatus(status);
                     roomManager.orderRoomv(roomID);
                     Order order = new Order(room, customer, orderID, dayRent);
-                    order.setCustomer(customer);
-                    order.setRoom(room);
                     orders.add(order);
                 } else {
                     System.out.println("Invalid file data");
