@@ -6,17 +6,12 @@ import model.room.CoupleRoom;
 import model.room.Room;
 import model.room.SingleRoom;
 
-/**
- *
- * @author PC
- */
 public class RoomManager {
     private final String[] ID_SINGLE_ROOM = {"101", "102", "103", "104", "105", "201", "202", "203", "204", "205"};
     private final String[] ID_COUPLE_ROOM = {"301", "302", "303", "304", "305", "401", "402", "403", "404", "405"};
 
-    private final ArrayList<Room> rooms;
+    private final ArrayList<Room> rooms = new ArrayList<>();
     public RoomManager() {
-        rooms = new ArrayList<>();
         createRoom();
     }
 //    ------------------------------------------------------------------------------
@@ -64,6 +59,16 @@ public class RoomManager {
         }
         return roomSearch;
     }
+    //--------------------------------------------------------------------------
+    public ArrayList<Room> getAvailableRooms() {
+    ArrayList<Room> availableRooms = new ArrayList<>();
+    for (Room room : rooms) {
+        if (!room.getStatus()) {
+            availableRooms.add(room);
+        }
+    }
+    return availableRooms;
+}
 //    ------------------------------------------------------------------------------
     public boolean updateRoom(Room room, String roomId, String roomType, float price) {
         boolean updated = false;
@@ -106,13 +111,22 @@ public class RoomManager {
         return cnt>0;
     }
 
-    public boolean orderRoom(Room room) {
-        
-        if(room.getStatus()==false) {
+    public boolean orderRoom(String roomId) {
+        for (Room room : rooms){
+        if(room.getStatus()==false && room.getRoomID().equalsIgnoreCase(roomId)) {
             room.setStatus(true);
             return true;
         }
+        }
         return false;
+    }
+    
+     public void orderRoomv(String roomId) {
+        for (Room room : rooms){
+        if(room.getStatus()==false && room.getRoomID().equalsIgnoreCase(roomId)) {
+            room.setStatus(true);
+        }
+        }
     }
 //    ------------------------------------------------------------------------------
 }

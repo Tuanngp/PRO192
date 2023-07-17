@@ -12,7 +12,7 @@ public class Customer extends Person{
     
     public Customer(String id, String name, String phone, String address, boolean gender, LocalDate dateOfBirth,String email, String rank) {
         super(id, name, phone, address, gender, dateOfBirth, email);
-        this.rank = setFormat(rank);
+        this.rank = rank;
     }
     
     public String getRank() {
@@ -20,7 +20,7 @@ public class Customer extends Person{
     }
 
     public void setRank(String rank) {
-        this.rank = setFormat(rank);
+        this.rank = rank;
     }
     
     @Override

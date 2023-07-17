@@ -31,7 +31,7 @@ public class Person {
 
 
     public String getName() {
-        return setFormName(name);
+        return name;
     }
 
 
@@ -39,17 +39,17 @@ public class Person {
         this.name = name;
     }
 
-    public static String setFormName(String name) {
-        String[] word = name.split("\\s+");
-        for(int i=0; i<word.length; i++) {
-            word[i] = word[i].substring(0, 1).toUpperCase() + word[i].substring(1).toLowerCase();
-        }
-        String result = "";
-        for(int i=0; i<word.length; i++) {
-            result += (word[i] + " ");
-        }
-        return result.trim();
-    }
+//    public static String setFormName(String name) {
+//        String[] word = name.split("\\s+");
+//        for(int i=0; i<word.length; i++) {
+//            word[i] = word[i].substring(0, 1).toUpperCase() + word[i].substring(1).toLowerCase();
+//        }
+//        String result = "";
+//        for(int i=0; i<word.length; i++) {
+//            result += (word[i] + " ");
+//        }
+//        return result.trim();
+//    }
 
     public String getPhone() {
         return phone;
@@ -61,7 +61,7 @@ public class Person {
 
 
     public String getAddress() {
-        return setFormat(address);
+        return address;
     }
 
 
@@ -100,15 +100,15 @@ public class Person {
         return dateOfBirth.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
-    public String setFormat(String str) {
-        String[] word = str.split("\\s+");
-        String result="";
-        for(int i=0; i<word.length; i++) {
-            word[i] = word[i].substring(0, 1).toUpperCase() + word[i].substring(1).toLowerCase();
-            result += (word[i] + " ");
-        }
-        return result;
-    }
+//    public String setFormat(String str) {
+//        String[] word = str.split("\\s+");
+//        String result="";
+//        for(int i=0; i<word.length; i++) {
+//            word[i] = word[i].substring(0, 1).toUpperCase() + word[i].substring(1).toLowerCase();
+//            result += (word[i] + " ");
+//        }
+//        return result;
+//    }
 
     @Override
     public String toString() {

@@ -18,7 +18,7 @@ import view.Validation;
 
 public class OrderManager {
     private ArrayList<Order> orders;
-
+    RoomManager roomManager = new RoomManager();
     // -------------------------------------------------
     public OrderManager() {
         orders = new ArrayList<>();
@@ -46,14 +46,15 @@ public class OrderManager {
         orders.forEach(p -> System.out.println(p));
     }
     // ----------------------------------------------------------
-    public boolean addOrder(Order order) {
-        if (order != null) {
-            orders.add(order);
-            return true;
-        } else {
-            return false;
-        }
+    public boolean addOrder(Order order, Customer customer,Room room) {
+    if (order != null && room != null && customer!=null) {
+        order.setRoom(room);
+        orders.add(order);
+        return true;
+    } else {
+        return false;
     }
+}
     // -------------------------------------------------
     public boolean isDupplication(int id) {
         return !search(p -> p.getOrderID() == id).isEmpty();
@@ -131,15 +132,18 @@ public class OrderManager {
                     
                     Customer customer = new Customer(customerID, customerName, customerPhone, customerAddress,
                             customerGender, dateOfBirth, customerEmail, customerRank);
-                    Room room;
-                    if (roomType.equalsIgnoreCase("Single Room")) {
-                        room = new SingleRoom(roomID);
-                    } else if (roomType.equalsIgnoreCase("Couple Room")) {
-                        room = new CoupleRoom(roomID);
-                    } else {
-                        room = new Room(roomID, roomType, price, status);
-                    }
-                    room.setStatus(status);
+                    Room room = roomManager.searchRoom(p->p.getRoomID().equalsIgnoreCase(roomID)).get(0);
+//                    if (roomType.equalsIgnoreCase("Single Room")) {
+//                        //room = new SingleRoom(roomID);
+//                        
+//                    } else if (roomType.equalsIgnoreCase("Couple Room")) {
+//                       // room = new CoupleRoom(roomID);
+//                    } 
+//                    //else {
+//                        room = new Room(roomID, roomType, price, status);
+                    //}
+                        room.setStatus(status);
+                    roomManager.orderRoomv(roomID);
                     Order order = new Order(room, customer, orderID, dayRent);
                     orders.add(order);
                 } else {

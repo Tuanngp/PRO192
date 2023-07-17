@@ -71,20 +71,20 @@ public class OrderManagement extends Menu<String> {
             customer = customerManager.search(p -> p.getId().equalsIgnoreCase(customerId)).get(0);
         } catch (Exception e) {
             // TODO: handle exception
-            customer = null;
-        }
+        }            customer = null;
+
 
         if (customer == null) {
             System.out.println("Customer with ID " + customerId + " does not exist. Please create the customer first.");
             customer = CustomerManagement.getCustomer(customerId);
         }
-
         Room room = roomManagement.getRoom();
         int dayRent = Integer.parseInt(Validation.getString("Enter the number of days to rent: ", Validation.REGEX_NUMBER));
         int randomNumber = generateUniqueOrderNumber();
+        //Room room1 = roomManager.searchRoom(p->p.getRoomID().equalsIgnoreCase(room.getRoomID())).get(0);
         Order order = new Order(room, customer, randomNumber, dayRent);
-
-        if (orderManager.addOrder(order)) {
+//        System.out.println(order.toString());
+        if (orderManager.addOrder(order,customer,room)) {
             System.out.println("Order placed successfully.");
         } else {
             System.out.println("Failed to place the order.");

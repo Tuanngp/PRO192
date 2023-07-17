@@ -75,25 +75,46 @@ public class Validation {
         return LocalDate.parse(dateStr, formatter);
     }
     // --------------------------------------------------------
+//    public static String getDate(String prompt) {
+//        String dateStr;
+//        Scanner sc = new Scanner(System.in);
+//        do {
+//            System.out.print(prompt);
+//            dateStr = sc.nextLine();
+//            try{
+//            // Check if the input is empty
+//            if (dateStr.isEmpty()) {
+//                System.out.println("Can not empty");
+//            }
+//            if (!validDay(dateStr)) {
+//                System.out.println("[ERROR] Invalid date format. Please try again.");
+//            }
+//            }
+//            catch(Exception e){
+//                e.printStackTrace();
+//            }
+//        } while (!validDay(dateStr)&&dateStr.isEmpty());
+//    
+//        return dateStr;
+//    }
     public static String getDate(String prompt) {
-        String dateStr;
-        Scanner sc = new Scanner(System.in);
-        do {
-            System.out.print(prompt);
-            dateStr = sc.nextLine();
-    
-            // Check if the input is empty
-            if (dateStr.isEmpty()) {
-                return null;
-            }
-    
-            if (!validDay(dateStr)) {
-                System.out.println("[ERROR] Invalid date format. Please try again.");
-            }
-        } while (!validDay(dateStr));
-    
-        return dateStr;
-    }
+    String dateStr;
+    Scanner sc = new Scanner(System.in);
+    boolean validInput = false;
+    do {
+        System.out.print(prompt);
+        dateStr = sc.nextLine();
+        if (dateStr.isEmpty()) {
+            System.out.println("Can not be empty");
+        } else if (!validDay(dateStr)) {
+            System.out.println("[ERROR] Invalid date format. Please try again.");
+        } else {
+            validInput = true;
+        }
+    } while (!validInput);
+    return dateStr;
+}
+
     //---------------------------------------------------------
     public static int getDayWork(String pr){
         Scanner sc = new Scanner(System.in);

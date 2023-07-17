@@ -4,10 +4,6 @@ import controller.RoomManager;
 import java.util.ArrayList;
 import model.room.Room;
 
-/**
- *
- * @author PC
- */
 public class RoomManagement extends Menu<String>{
     static String[] roomOptions = { "Display all room.", "Search room.", "Update Room.", "Release room.", "Statistic room" , "Exit"};
     RoomManager roomManager = new RoomManager();
@@ -57,7 +53,17 @@ public class RoomManagement extends Menu<String>{
             roomManager.displayRoom(rooms);
         }
     }
-    
+    //-------------------------------------------------------------------
+    public void displayAvailableRoom() {
+    ArrayList<Room> availableRooms = roomManager.getAvailableRooms(); // Retrieve only the available (unoccupied) rooms
+    if (availableRooms.isEmpty()) {
+        System.out.println("No available rooms to display.");
+    } else {
+        System.out.println("List of available rooms:");
+        roomManager.displayRoom(availableRooms);
+    }
+}
+
     public void searchRoom() {
         String[] searchOptions = {"Search by ID", "Search by Type", "Exit"};
         Menu searchMenu = new Menu("Searching Room", searchOptions) {
@@ -246,16 +252,15 @@ public class RoomManagement extends Menu<String>{
     }
 
     public Room getRoom() {
-        displayRoom();
+        displayAvailableRoom();
         String roomId = Validation.getString("Enter Room ID: ", Validation.REGEX_NUMBER);
         Room room = roomManager.searchRoom(p -> p.getRoomID().equals(roomId)).get(0);
-        if(roomManager.orderRoom(room)) {
+        if(roomManager.orderRoom(roomId)) {
             System.out.println("Order room " + roomId + " has been successfully.");
+            return room;
         } else {
             System.out.println("Room " + roomId + " is been failed.");
+                   return null;
         }
-        return null;
-
     }
-    
 }
