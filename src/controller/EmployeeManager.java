@@ -15,8 +15,12 @@ import model.person.Employee;
 import view.Validation;
 
 public class EmployeeManager {
-    protected ArrayList<Employee> employees= new ArrayList<>();
- 
+    ArrayList<Employee> employees;
+
+    public EmployeeManager() {
+        employees = new ArrayList<>();
+    }
+
     public ArrayList<Employee> getListEmployees() {
         return employees;
     }

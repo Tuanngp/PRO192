@@ -15,9 +15,13 @@ import model.room.Room;
 import view.Validation;
 
 public class OrderManager {
-    private ArrayList<Order> orders = new ArrayList<>();;
+    private ArrayList<Order> orders;
     RoomManager roomManager = new RoomManager();
     CustomerManager customerManager = new CustomerManager();
+    // -------------------------------------------------
+    public OrderManager() {
+        orders = new ArrayList<>();
+    }
     // --------------------------------------------------------
     public ArrayList<Order> getOrders() {
         ArrayList<Order> getOrders = new ArrayList<>();
@@ -46,15 +50,15 @@ public class OrderManager {
     }
     // ----------------------------------------------------------
     public boolean addOrder(Order order, Customer customer,Room room) {
-        if (order != null && room != null && customer!=null) {
-            order.setCustomer(customer);
-            order.setRoom(room);
-            orders.add(order);
-            return true;
-        } else {
-            return false;
-        }
+    if (order != null && room != null && customer!=null) {
+        order.setCustomer(customer);
+        order.setRoom(room);
+        orders.add(order);
+        return true;
+    } else {
+        return false;
     }
+}
     // -------------------------------------------------
     public boolean isDupplication(int id) {
         return !search(p -> p.getOrderID() == id).isEmpty();
