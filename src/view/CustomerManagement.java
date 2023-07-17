@@ -220,5 +220,6 @@ public class CustomerManagement extends Menu<String>{
                 displayCustomers();
             }
         };
+        mSort.run();
     }
 }
