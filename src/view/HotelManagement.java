@@ -12,7 +12,7 @@ public class HotelManagement extends Menu<String>{
     private RoomManagement roomManagement = new RoomManagement();
     private OrderManagement orderManagement = new OrderManagement();
     private EmployeeManagement employeeManagement = new EmployeeManagement();
-    private BillManager billManager = new BillManager();
+    private BillManagement billManagement= new BillManagement();
     public HotelManagement(){
         super("Hotel Management System",hotelMenu);
     }
@@ -32,8 +32,7 @@ public class HotelManagement extends Menu<String>{
                 employeeManagement.run();
                 break;
             case "5":
-                billManager.addBill();
-//                billManager.displayAllBills();
+                billManagement.run();
                 break;
             case "6":
                 System.out.println("Thanks for using our system, Good bye And you see in the next Semester");
