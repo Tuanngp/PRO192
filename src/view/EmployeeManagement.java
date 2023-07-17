@@ -112,9 +112,10 @@ public class EmployeeManagement extends Menu<String> {
                         rs = employeeManager.search(p -> p.getEmail().equalsIgnoreCase(val));
                         break;
                     case "5":
-                   
+                    
                         System.out.println("Exit Searching Menu!"); 
-                        break;
+                    
+                       return;
                     default:
                         System.out.println("[ERROR] Invalid input! Please try again.");
                         break;
