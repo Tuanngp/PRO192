@@ -42,7 +42,12 @@ public class EmployeeManagement extends Menu<String> {
                 deleteEmployee();
                 break;
             case "6":
+                try{
                 employeeManager.saveFileAndExit("employee_output.txt");
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                }
                 System.out.println("Exit Employee Management System!");
                 return;
             default:
