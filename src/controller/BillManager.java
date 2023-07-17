@@ -8,14 +8,24 @@ import model.Order;
 
 public class BillManager {
     ArrayList<Bill> bills=new ArrayList<>();
+    OrderManager ord = new OrderManager();
     int id=1;
     
-    public void addBill(Order order){
-        Bill bill=new Bill(order);
-        bills.add(bill);
-        id++;
+    public void addBill(){
+        for (Order order : ord.getFullOrders()){
+            Bill bill=new Bill(order);
+            System.out.println(bill);
+            bills.add(bill);
+            id++;
+        }
     }
-
+    
+    public void displayAllBills(){
+        for (Bill bill : bills){
+            System.out.println(bill.toString());
+        }
+    }
+    
     public ArrayList<Bill> getAllBills(){
         return bills;
     }

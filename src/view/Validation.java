@@ -97,21 +97,21 @@ public class Validation {
 //    
 //        return dateStr;
 //    }
-    public static String getDate(String prompt) {
-    String dateStr;
-    Scanner sc = new Scanner(System.in);
-    boolean validInput = false;
-    do {
-        System.out.print(prompt);
-        dateStr = sc.nextLine();
-        if (dateStr.isEmpty()) {
-            System.out.println("Can not be empty");
-        } else if (!validDay(dateStr)) {
-            System.out.println("[ERROR] Invalid date format. Please try again.");
-        } else {
+        public static String getDate(String prompt) {
+        String dateStr;
+        Scanner sc = new Scanner(System.in);
+        boolean validInput = false;
+        do {
+            System.out.print(prompt);
+            dateStr = sc.nextLine();
+            if (dateStr.isEmpty()) {
+                System.out.println("Can not be empty");
+            } else if (!validDay(dateStr)) {
+                System.out.println("[ERROR] Invalid date format. Please try again.");
+            } else {
             validInput = true;
         }
-    } while (!validInput);
+        } while (!validInput);
     return dateStr;
 }
 

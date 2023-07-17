@@ -33,6 +33,10 @@ public class OrderManager {
         }
         return getOrders;
     }
+    //-----------------------------------------------------------
+    public ArrayList<Order> getFullOrders(){
+        return orders;
+    }
     // -----------------------------------------------------------
     public void displayAllOrder() {
         for (Order order : orders) {
@@ -48,6 +52,7 @@ public class OrderManager {
     // ----------------------------------------------------------
     public boolean addOrder(Order order, Customer customer,Room room) {
     if (order != null && room != null && customer!=null) {
+        order.setCustomer(customer);
         order.setRoom(room);
         orders.add(order);
         return true;
@@ -145,6 +150,8 @@ public class OrderManager {
                         room.setStatus(status);
                     roomManager.orderRoomv(roomID);
                     Order order = new Order(room, customer, orderID, dayRent);
+                    order.setCustomer(customer);
+                    order.setRoom(room);
                     orders.add(order);
                 } else {
                     System.out.println("Invalid file data");
