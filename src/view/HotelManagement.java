@@ -5,6 +5,8 @@ package view;
 // Duy An - Cusotomer
 // Tuấn - Order 
 import controller.BillManager;
+import controller.CustomerManager;
+import model.person.Customer;
 
 public class HotelManagement extends Menu<String>{
     static String[] hotelMenu = {"Customer Management", "Room Management", "Order Management", "Employee Management","Issue bill","Exit"};
@@ -15,6 +17,10 @@ public class HotelManagement extends Menu<String>{
     private BillManagement billManagement= new BillManagement();
     public HotelManagement(){
         super("Hotel Management System",hotelMenu);
+        customerManagement.loadCustomersFromFile();
+        employeeManagement.loadEmployeesFromFile();
+        orderManagement.loadOrdersFromFile();
+
     }
     @Override
     public void execute(String selected) {

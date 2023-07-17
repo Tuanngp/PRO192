@@ -9,7 +9,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
-import model.person.Customer;
 import model.person.Employee;
 import view.Validation;
 
