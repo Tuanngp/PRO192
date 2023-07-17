@@ -91,15 +91,15 @@ public class EmployeeManagement extends Menu<String> {
                 ArrayList<Employee> rs = null;
                 switch (selected) {
                     case "1":
-                        String val = Validation.getString("Enter ID's Employee you want to search", Validation.REGEX_ID_NV);
+                        String val = Validation.getString("Enter ID's Employee you want to search: ", Validation.REGEX_ID_NV);
                         rs = employeeManager.search(p -> p.getId().equalsIgnoreCase(val));
                         break;
                     case "2":
-                        val = Validation.getString("Enter Name's Employee you want to search", Validation.REGEX_NAME);
+                        val = Validation.getString("Enter Name's Employee you want to search: ", Validation.REGEX_NAME);
                         rs = employeeManager.search(p -> p.getName().equalsIgnoreCase(val));
                         break;
                     case "3":
-                        val = Validation.getString("Enter Phone's Employee you want to search");
+                        val = Validation.getString("Enter Phone's Employee you want to search: ");
                         rs = employeeManager.search(p -> p.getPhone().equals(val));
                         break;
                     case "4":
@@ -107,7 +107,8 @@ public class EmployeeManagement extends Menu<String> {
                         rs = employeeManager.search(p -> p.getEmail().equalsIgnoreCase(val));
                         break;
                     case "5":
-                        System.out.println("Exit Searching Menu!");
+                   
+                        System.out.println("Exit Searching Menu!"); 
                         break;
                     default:
                         System.out.println("[ERROR] Invalid input! Please try again.");
