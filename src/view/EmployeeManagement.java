@@ -15,12 +15,6 @@ public class EmployeeManagement extends Menu<String> {
 
     public EmployeeManagement() {
         super("Employee Management System", EmployeeMenu);
-        try{
-        employeeManager.loadEmployeesFromFile("employee.txt");
-        }
-        catch(IOException e){
-            e.printStackTrace();;
-        }
     }
 
     @Override
@@ -53,6 +47,16 @@ public class EmployeeManagement extends Menu<String> {
             default:
                 System.out.println("[ERROR] Invalid input! Please try again.");
                 break;
+        }
+    }
+
+    public void loadEmployeesFromFile() {
+            String path = "employee.txt";
+        try{
+            employeeManager.loadEmployeesFromFile(path);
+        }
+        catch(IOException e){
+            System.out.println("[ERROR] Unable to load file " + path);
         }
     }
 

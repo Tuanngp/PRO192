@@ -17,16 +17,12 @@ public class OrderManagement extends Menu<String> {
                             "Search Room Order", "Release Room", "Sort room order by day rented", "Exit." };
     private OrderManager orderManager = new OrderManager();
     private CustomerManager customerManager = new CustomerManager();
+    private CustomerManagement customerManagement = new CustomerManagement();
     private RoomManager roomManager = new RoomManager();
     private RoomManagement roomManagement = new RoomManagement();
 
     public OrderManagement() {
         super("Order Management System", menu);
-        try {
-            orderManager.readOrdersFromFile("order.txt");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -59,6 +55,15 @@ public class OrderManagement extends Menu<String> {
         }
     }
     
+    public void loadOrdersFromFile() {
+        String path = "order.txt";
+        try {
+            orderManager.readOrdersFromFile(path);
+        } catch (IOException e) {
+            System.out.println("[ERROR] Unable to load file " + path);
+        }
+    }
+
     // ------------------------------------------------------------------------------
     private void displayAllOrders() {
             orderManager.displayAllOrder();
@@ -79,7 +84,7 @@ public class OrderManagement extends Menu<String> {
 
         if (customer == null) {
             System.out.println("Customer with ID " + customerId + " does not exist. Please create the customer first.");
-            customer = CustomerManagement.getCustomer(customerId);
+            customer = customerManagement.getCustomer(customerId);
         }
         Room room = roomManagement.getRoom();
         int dayRent = Integer.parseInt(Validation.getString("Enter the number of days to rent: ", Validation.REGEX_NUMBER));
@@ -93,6 +98,7 @@ public class OrderManagement extends Menu<String> {
             System.out.println("Failed to place the order.");
         }
     }
+
     // --------------------------------------------------------------------------
     public void updateOrder() {
         int orderId = Integer.parseInt(Validation.getString("Enter the order ID: ", Validation.REGEX_NUMBER));

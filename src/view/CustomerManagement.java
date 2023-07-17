@@ -13,18 +13,18 @@ public class CustomerManagement extends Menu<String>{
     CustomerManager customerManager = new CustomerManager();
     public CustomerManagement() {
         super("Customer Management System", customersMenu );
-        try{
-            customerManager.loadCustomersFromFile("customer.txt");
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
     }
    
     @Override
     public void execute(String selected) {
         switch(selected) {
             case "1":
+            Customer customer1 = new Customer("123456", "John Doe", "0987654321", "123 Main Street, Anytown, CA 91234", true, LocalDate.of(1990, 1, 1), "johndoe@example.com", "Platinum");
+            Customer customer2 = new Customer("654321", "Jane Doe", "0876543210", "456 Elm Street, Anytown, CA 91234", false, LocalDate.of(1991, 2, 2), "janedoe@example.com", "Gold");
+            Customer customer3 = new Customer("789012", "John Smith", "0765432109", "789 Oak Street, Anytown, CA 91234", true, LocalDate.of(1992, 3, 3), "johnsmith@example.com", "Silver");
+                customerManager.addCustomer(customer1);
+                customerManager.addCustomer(customer2);
+                customerManager.addCustomer(customer3);
                 displayCustomers();
                 break;
             case "2":
@@ -51,6 +51,15 @@ public class CustomerManagement extends Menu<String>{
         }
     }
     
+    public void loadCustomersFromFile() {
+        String path = "customer.txt";
+        try{
+            customerManager.loadCustomersFromFile(path);
+        }
+        catch(Exception e){
+            System.out.println("[ERROR] Unable to load file " + path);
+        }
+    }
     public void displayCustomers() {
         System.out.println("List all customers: ");
         customerManager.displayCustomers();
@@ -78,7 +87,7 @@ public class CustomerManagement extends Menu<String>{
         }
     }
 
-    public static Customer getCustomer(String id) {
+    public Customer getCustomer(String id) {
         String name = Validation.getString("Enter customer's name: ", Validation.REGEX_NAME);
         String phone = Validation.getString("Enter customer's phone:", Validation.REGEX_NUMBER);
         String address = Validation.getString("Enter Customer Address: ", Validation.REGEX_ADDRESS);
@@ -86,6 +95,12 @@ public class CustomerManagement extends Menu<String>{
         LocalDate dateOfBirth = Validation.getLocalDate(Validation.getDate("(*)Enter customer's date of birth: "));
         String email = Validation.getString("Enter customer's email: ", Validation.REGEX_EMAIL);
         Customer customer = new Customer(id, name, phone, address, gender, dateOfBirth, email, "member");
+        if(customerManager.addCustomer(customer)){
+            System.out.println("Customer " + id + " added succesfully.");
+        } else {
+            System.out.println("Falure to add Customer.");
+        }
+
         return customer;
     }
     
