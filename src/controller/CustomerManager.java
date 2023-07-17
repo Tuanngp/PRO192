@@ -7,8 +7,11 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 
+import model.Order;
 import model.person.Customer;
 import view.Validation;
 public class CustomerManager {
@@ -143,14 +146,29 @@ public class CustomerManager {
         return !customersDeleted.isEmpty();
     }
 //    ------------------------------------------------------------------------------
-    public void saveFileAndExit(String fileName){
-        try (FileWriter writer = new FileWriter(fileName)) {
-        for (Customer customer : customers) {
-            writer.write(customer.toString()+"\n");
+    public void saveFileAndExit(String fileName) {
+        Set<String> existingData = new HashSet<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                existingData.add(line);
+            }
+        } catch (IOException e) {
+            System.out.println("Error occurred while reading data from file");
+            return;
         }
-        System.out.println("Data written to file "+fileName+" successfully.");
-        } catch (Exception e) {
-        System.out.println("Error occurred while writing data to file");
+
+        try (FileWriter writer = new FileWriter(fileName, true)) {
+            for (Customer customer: customers) {
+                String customerString = customer.toString();
+                if (!existingData.contains(customerString)) {
+                    writer.write(customerString + "\n");
+                }
+            }
+            System.out.println("Data written to file " + fileName + " successfully.");
+        } catch (IOException e) {
+            System.out.println("Error occurred while writing data to file");
         }
     }
-    }
+}

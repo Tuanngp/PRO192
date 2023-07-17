@@ -9,8 +9,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 
+import model.Order;
 import model.person.Employee;
 import view.Validation;
 
@@ -159,15 +162,31 @@ public class EmployeeManager {
 
     // -------------------------------------------------------------------------
     public void saveFileAndExit(String fileName) {
-        try (FileWriter writer = new FileWriter(fileName)) {
-            for (Employee employee : employees) {
-                writer.write(employee.toString() + "\n");
+        Set<String> existingData = new HashSet<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                existingData.add(line);
+            }
+        } catch (IOException e) {
+            System.out.println("Error occurred while reading data from file");
+            return;
+        }
+
+        try (FileWriter writer = new FileWriter(fileName, true)) {
+            for (Employee employee: employees) {
+                String employeeString = employee.toString();
+                if (!existingData.contains(employeeString)) {
+                    writer.write(employeeString + "\n");
+                }
             }
             System.out.println("Data written to file " + fileName + " successfully.");
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println("Error occurred while writing data to file");
         }
     }
+    // ----------------------------------------------------------------
     public void SortAndExit() {
         EmployeeManager sorter = new EmployeeManager();// Thêm các nhân viên vào danh sách
     sorter.addEmployee(null);

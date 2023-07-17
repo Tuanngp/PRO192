@@ -114,8 +114,8 @@ public class OrderManager {
                 if (data.length == 14) {
                     // get information 
                     String roomID = data[0];
-                    String roomType = data[1];
-                    float price = Float.parseFloat(data[2]);
+                    // String roomType = data[1];
+                    // float price = Float.parseFloat(data[2]);
                     boolean status = Boolean.parseBoolean(data[3]);
                     String customerID = Validation.checkValue(data[4], Validation.REGEX_ID_KH);
                     String customerName = Validation.checkValue(data[5], Validation.REGEX_NAME);
@@ -137,7 +137,7 @@ public class OrderManager {
                     String customerRank = Validation.checkValue(data[11], Validation.REGEX_RANK);
                     int orderID = Integer.parseInt(data[12]);
                     int dayRent = Integer.parseInt(data[13]);
-                    // reference object 
+                    // reference object
                     Customer customer = new Customer(customerID, customerName, customerPhone, customerAddress,customerGender, dateOfBirth, customerEmail, customerRank);
                     customerManager.getListCustomers().add(customer);
                     Room room = roomManager.searchRoom(p->p.getRoomID().equalsIgnoreCase(roomID)).get(0);
