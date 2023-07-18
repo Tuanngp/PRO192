@@ -28,6 +28,7 @@ public class BillManager {
             Bill bill=new Bill(order);
             bills.add(bill);
         }
+        System.out.println("Add successful");
     }
     
     public void displayAllBills(){
