@@ -10,7 +10,7 @@ public class RoomManager {
     private final String[] ID_SINGLE_ROOM = {"101", "102", "103", "104", "105", "201", "202", "203", "204", "205"};
     private final String[] ID_COUPLE_ROOM = {"301", "302", "303", "304", "305", "401", "402", "403", "404", "405"};
 
-    private final ArrayList<Room> rooms = new ArrayList<>();
+    protected final ArrayList<Room> rooms = new ArrayList<>();
     public RoomManager() {
         createRoom();
     }

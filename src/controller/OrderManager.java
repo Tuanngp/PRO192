@@ -78,7 +78,7 @@ public class OrderManager {
                     // reference object 
                     Customer customer = new Customer(customerID, customerName, customerPhone, customerAddress,customerGender, dateOfBirth, customerEmail, customerRank);
                     customerManager.getListCustomers().add(customer);
-                    Room room = roomManager.searchRoom(p->p.getRoomID().equalsIgnoreCase(roomID)).get(0);
+                    Room room = roomManager.searchRoomByID(roomID);
                     room.setStatus(status);
                     roomManager.orderRoomv(roomID);
                     Order order = new Order(room, customer, orderID, dayRent);
@@ -131,6 +131,10 @@ public class OrderManager {
         }
         return rs;
     }
+    
+    public Order searchOrderByID(int orderId) {
+        return orders.stream().filter(p -> p.getOrderID() == orderId).findFirst().orElse(null);
+    }
     // -------------------------------------------------------
     public boolean updateOrder(Order order, Room room, int dayRent) {
         boolean updated = false;
@@ -139,7 +143,8 @@ public class OrderManager {
             updated = true;
         }
 
-        if (order.getRoom().getStatus() == false) {
+        if (room != null) {
+            order.setRoom(room);
             order.getRoom().setStatus(true);
             updated = true;
         }

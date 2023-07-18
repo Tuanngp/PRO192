@@ -78,14 +78,11 @@ public class OrderManagement extends Menu<String> {
     // --------------------------------------------------------------------------
     public void addOrder() {
         String customerId = Validation.getString("(*) Enter customer's ID: ", Validation.REGEX_ID_KH);
-        Customer customer = null;
-        try {
-            customer = customerManager.search(p -> p.getId().equalsIgnoreCase(customerId)).get(0);
-        } catch (Exception e) {
-            System.out.println("Customer with ID " + customerId + " does not exist. Please create the customer first.");
-        }
-
+        Customer customer = customerManager.searchCustomerByID(customerId);
+        ArrayList<Customer> customers = customerManager.getListCustomers();
+        System.out.println(customers);
         if (customer == null) {
+            System.out.println("Customer with ID " + customerId + " does not exist. Please create the customer first.");
             customer = customerManagement.getCustomer(customerId);
         }
 
@@ -103,10 +100,11 @@ public class OrderManagement extends Menu<String> {
     // --------------------------------------------------------------------------
     public void updateOrder() {
         int orderId = Integer.parseInt(Validation.getString("Enter the order ID: ", Validation.REGEX_NUMBER));
-        Order order = orderManager.search(p -> p.getOrderID() == orderId).get(0);
-
+        Order order = orderManager.searchOrderByID(orderId);
+        
         if (order == null) {
             System.out.println("Order with ID " + orderId + " does not exist.");
+            return;
         }
 
         String[] updateOptions = {"Update Room", "Update Day Rent", "Exit"};

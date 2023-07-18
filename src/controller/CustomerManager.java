@@ -15,10 +15,10 @@ import model.Order;
 import model.person.Customer;
 import view.Validation;
 public class CustomerManager {
-    ArrayList<Customer> customers;
+    public ArrayList<Customer> customers = new ArrayList<>();
 
     public CustomerManager() {
-        customers = new ArrayList<>();
+        
     }
     
     public ArrayList<Customer> getListCustomers() {
@@ -50,7 +50,7 @@ public class CustomerManager {
                 String email = Validation.checkValue(data[6], Validation.REGEX_EMAIL);
                 String rank = Validation.checkValue(data[7], Validation.REGEX_RANK);
                 Customer customer = new Customer(id, name, phone, address, gender, dateOfBirth, email, rank);
-                customers.add(customer);
+                this.customers.add(customer);
             } else {
                 System.out.println("Invalid file data");
             }
@@ -94,6 +94,10 @@ public class CustomerManager {
             }
         }
         return rs;
+    }
+    
+    public Customer searchCustomerByID(String id) { 
+        return this.customers.stream().filter(p -> p.getId().equalsIgnoreCase(id)).findFirst().orElse(null);
     }
 //    ------------------------------------------------------------------------------
     public boolean updateCustomer(Customer cus, String id, String name, String phone, String address, String genderStr, LocalDate dateOfBirth, String email, String rank) {
