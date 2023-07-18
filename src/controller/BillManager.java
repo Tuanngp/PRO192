@@ -100,9 +100,7 @@ public class BillManager {
                 } else {
                     System.out.println("Invalid file data");
                 }
-
             }
-            System.out.println("Read Successful");
         } catch (Exception e) {
             System.out.println("Error occurred while reading orders from file: " + filename);
             e.printStackTrace();

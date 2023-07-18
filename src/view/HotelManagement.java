@@ -1,12 +1,4 @@
 package view;
-// Lộc - Employee
-// Hoàng Phúc - Room
-// Hồng Phúc - Bill
-// Duy An - Cusotomer
-// Tuấn - Order 
-import controller.BillManager;
-import controller.CustomerManager;
-import model.person.Customer;
 
 public class HotelManagement extends Menu<String>{
     static String[] hotelMenu = {"Customer Management", "Room Management", "Order Management", "Employee Management","Issue bill","Exit"};

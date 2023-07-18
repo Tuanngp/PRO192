@@ -139,7 +139,7 @@ public class OrderManager {
             updated = true;
         }
 
-        if (room.getStatus() == false) {
+        if (order.getRoom().getStatus() == false) {
             order.getRoom().setStatus(true);
             updated = true;
         }
