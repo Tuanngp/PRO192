@@ -79,8 +79,7 @@ public class OrderManagement extends Menu<String> {
     public void addOrder() {
         String customerId = Validation.getString("(*) Enter customer's ID: ", Validation.REGEX_ID_KH);
         Customer customer = customerManager.searchCustomerByID(customerId);
-        ArrayList<Customer> customers = customerManager.getListCustomers();
-        System.out.println(customers);
+
         if (customer == null) {
             System.out.println("Customer with ID " + customerId + " does not exist. Please create the customer first.");
             customer = customerManagement.getCustomer(customerId);

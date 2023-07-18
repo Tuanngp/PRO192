@@ -77,7 +77,7 @@ public class OrderManager {
                     
                     // reference object 
                     Customer customer = new Customer(customerID, customerName, customerPhone, customerAddress,customerGender, dateOfBirth, customerEmail, customerRank);
-                    customerManager.getListCustomers().add(customer);
+                    customerManager.addCustomers(customer);
                     Room room = roomManager.searchRoomByID(roomID);
                     room.setStatus(status);
                     roomManager.orderRoomv(roomID);

@@ -50,7 +50,7 @@ public class CustomerManager {
                 String email = Validation.checkValue(data[6], Validation.REGEX_EMAIL);
                 String rank = Validation.checkValue(data[7], Validation.REGEX_RANK);
                 Customer customer = new Customer(id, name, phone, address, gender, dateOfBirth, email, rank);
-                this.customers.add(customer);
+                addCustomers(customer);
             } else {
                 System.out.println("Invalid file data");
             }
@@ -77,9 +77,7 @@ public class CustomerManager {
     }
     
     public void addCustomers(Customer customer) {
-        // if(customer != null && !isDupplication(customer.getId())) {
-            customers.add(customer);
-        // }
+        customers.add(customer);
     }
 //    ------------------------------------------------------------------------------
     public boolean isDupplication(String id) {
