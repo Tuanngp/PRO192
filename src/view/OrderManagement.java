@@ -43,7 +43,7 @@ public class OrderManagement extends Menu<String> {
                 deleteOrder();
                 break;
             case "6":
-                sortOrdersByDayRent();
+                sortOrder();
                 break;
             case "7":
                 System.out.println("Back to main menu.");
@@ -62,7 +62,6 @@ public class OrderManagement extends Menu<String> {
         String path = "order.txt";
     try {
         orderManager.loadOrdersFromFile(path);
-    
     } catch (IOException e) {
         System.out.println("[ERROR] Unable to load file " + path);
     }
@@ -220,12 +219,6 @@ public class OrderManagement extends Menu<String> {
     }
 
     //--------------------------------------------------------------------------
-    public void sortOrdersByDayRent() {
-        System.out.println("List of orders after sorting by day rent:");
-        orderManager.sortOrder();
-        displayAllOrders();
-    }
-
     public void sortOrder() {
         String[] sortOptions = {"Sort order by ID", "Sort order by Day Rented", "Exit"};
         Menu sortMenu = new Menu("Sorting Order", sortOptions) {
@@ -234,11 +227,24 @@ public class OrderManagement extends Menu<String> {
             public void execute(String selected) {
                 switch(selected) {
                     case "1":
+                        orderManager.sortOrderById();
+                        displayAllOrders();
+                    break;
+                    case "2":
+                        orderManager.sortOrderByDayRent();
+                        displayAllOrders();
+                        break;
+                    case "3":
+                        System.out.println("Exiting sort order program.");
+                        return;
+                    default:
+                        System.out.println("Invalid input! Try again please.");
                         break;
                 }
             }
             
         };
+        sortMenu.run();
     }
     // -----------------------------------------------------------------
     public int generateUniqueOrderNumber() {

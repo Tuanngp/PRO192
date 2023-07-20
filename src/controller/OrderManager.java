@@ -161,8 +161,12 @@ public class OrderManager {
     }
 
     // -----------------------------------------------------------
-    public void sortOrder() {
+    public void sortOrderByDayRent() {
         Collections.sort(orders, Comparator.comparingInt(order -> order.getDayRent()));
+    }
+
+    public void sortOrderById() {
+        Collections.sort(orders, Comparator.comparingInt(order -> order.getOrderID()));
     }
     // -----------------------------------------------------------
     public void saveFileAndExit(String fileName) {
